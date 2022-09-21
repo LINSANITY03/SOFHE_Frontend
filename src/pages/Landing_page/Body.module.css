@@ -1,0 +1,27 @@
+.body__contents{
+    padding: 80px 20px;
+    
+}
+.body__title{
+    text-align: center;
+    font-size: 1.7em;
+}
+
+.body__grid{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 20px;
+    padding-top: 93px;
+    text-align: center;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.description{
+    font-size: 1em;
+    line-height: 24px;
+}
+

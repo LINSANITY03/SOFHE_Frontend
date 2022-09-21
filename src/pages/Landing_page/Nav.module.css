@@ -1,0 +1,46 @@
+.nav{
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+.nav_change{
+    background: white;
+    transition: all 0.5s ease-out;
+    box-shadow: 3px 10px 17px #bdbebf;
+}
+
+.nav .nav_logo{
+    object-fit: contain; /* make sure the image retain its aspect ration when its width is 80px */
+    margin-left: 76px;
+}
+
+.nav__components{
+    display: grid;
+    grid-template-columns: repeat(5, auto); /* 5 items per grid */
+    grid-gap: 62px; /* space between */
+    list-style: none; /* remove bullets */
+    width: 49vw;
+    justify-content: end;
+    margin-right: 6rem;
+    font-weight: 600;
+    align-items: center;
+}
+
+.btn{
+    background: #DCDCDC;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: #b9b8b8;
+    transition: all 1s ease-out;
+    color: rgb(255, 255, 255);
+}

@@ -1,0 +1,50 @@
+.footer__contents{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    padding-left: 20px;
+    padding-top: 106px;
+    padding-bottom: 40px;
+}
+
+.social{
+    display: flex;
+    padding-left: 27px;
+    padding-bottom: 30px;
+    grid-gap: 30px;
+    color: #376C43;
+}
+
+.google__play{
+    display: flex;
+    align-items: center;
+    background: #3A3838;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    width: 236px;
+    height: 69px;
+    text-align: left;
+    justify-content: center;
+    grid-gap: 12px;
+    font-size: 18px;
+}
+
+.text__google{
+    color: white;
+}
+
+.right__hand{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.logo__footer{
+    padding: 20px 20px;
+}
+.copyright{
+    text-align: center;
+    background: #376C43;
+    width: 100%;
+    float: left;
+    padding-top: 5px;
+}

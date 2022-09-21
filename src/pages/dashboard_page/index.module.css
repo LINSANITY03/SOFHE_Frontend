@@ -1,0 +1,13 @@
+.dashboard__contents{
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+.body__content{
+    width: 100%;
+}
+
+
+
+

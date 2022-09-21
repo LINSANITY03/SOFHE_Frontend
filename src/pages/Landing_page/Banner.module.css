@@ -1,0 +1,58 @@
+.banner{
+    object-fit: contain;
+    height: 684px;
+}
+
+.banner__contents{
+    margin-left: 30px;
+    padding-top: 140px; /* margin-top shifts pixels space from above element */
+    /* padding-top is the space between current border and above element */
+    max-width: 635px;
+}
+
+.banner__title{
+    font-size: 55px;
+    line-height: 72px;
+}
+
+.banner__motto{
+    font-size: 1.5em;
+    line-height: 36px;
+    padding-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.banner__description{
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
+
+.banner__buttons{
+    padding-top: 17px;
+}
+.banner__button{
+    cursor: pointer;
+    background: #05D43F;
+    border: none;
+    border-radius: 45px;
+    width: 211px;
+    height: 61px;
+    margin-left: 52px;
+    font-size: 1rem;
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    height: 4px;
+    width: 4px;
+  }
+  
+.right { 
+-webkit-transform: rotate(-45deg);
+transform: rotate(-45deg);
+}
+

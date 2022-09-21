@@ -1,0 +1,42 @@
+.cashflow__content{
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background: #E7E7E7;
+    margin: 10px;
+    padding: 0 10px;
+}
+
+.upper__content{
+    display: grid;
+    grid-template-columns: repeat(3 , auto);
+    align-items: center;
+    justify-items: center;
+}
+
+.upper__content > h2{
+    justify-self: flex-start;
+    margin-left: 20px;
+}
+
+.Average__cashflow{
+    border-radius: 25px;
+    background: #E7E7E7;
+    border: none;
+    box-shadow: 1px 4px 2px #bdbebf;
+    width: 137px;
+    height: 29px;
+    font-family: system-ui;
+    font-weight: 600;
+}
+
+.bargraph__content{
+    width: 571.5px;
+    height: 282px;
+    align-self: center;
+}
+
+.sort__graph > label{
+    font-weight: bold;
+    font-size: 15px;
+}

@@ -1,0 +1,121 @@
+.main__container{
+    padding: 20px;
+}
+
+.main__container img{
+    margin-left: 7em;
+}
+
+.body__div{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.left__div{
+    margin-left: 180px;
+    margin-top: 60px;
+}
+
+.points{
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 37px;
+    font-weight: 500;
+}
+
+.points{
+    list-style: none;
+}
+
+.points li::before{
+    content: "\2022";
+    width: 1em;
+    display: inline-block;
+    color: #05D43F;
+}
+
+.signup__contents{
+    background-color: #F6F6F6;
+    width: 312px;
+    height: 626px;
+    border-radius: 25px;
+    box-shadow: 1px 7px 5px #bdbebf;
+    padding: 0 100px;
+    display: flex;
+    flex-direction: column
+}
+
+.signup__contents > h3{
+    text-align: center;
+}
+
+.signup__contents div:nth-child(n + 1):nth-child(-n + 6){
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.signup__contents > h4{
+    text-align: center;
+}
+
+.signup__contents label{
+    font-weight: 500;
+    margin-right: 213px;
+}
+
+#email_{
+    width: 260px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow:  2px 5px 3px #bdbebf;
+    padding-left: 20px;
+    margin-top: 7px;
+    background-color: #F1EEEE;
+    margin-left: 10px;
+}
+.signup__contents input[type="email"], input[type="text"], [type="password"],select{
+    width: 260px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow:  2px 5px 3px #bdbebf;
+    padding-left: 20px;
+    margin-top: 7px;
+    background-color: #F1EEEE;
+    margin-left: 10px;
+}
+
+.submit__btn{
+    margin-top: 35px;
+    align-self: center;
+}
+
+.submit__btn > button{
+    background: #05D43F;
+    border: none;
+    color: white;
+    width: 277px;
+    height: 57px;
+    border-radius: 10px;
+    box-shadow:  1px 3px 4px #bdbebf;
+    cursor: pointer;
+}
+
+.login__text{
+    text-align: center;
+    font-weight: 500;
+}
+
+.signin__text{
+    cursor: pointer;
+}
+
+.login__text a:link{
+    text-decoration: none; 
+}
+
+
+

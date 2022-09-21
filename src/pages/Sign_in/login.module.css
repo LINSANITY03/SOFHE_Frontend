@@ -1,0 +1,118 @@
+.main__container{
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+}
+
+.main__container img{
+    margin-top: 60px;
+    margin-left: 427px;
+}
+
+.login__contents{
+    background-color: #F6F6F6;
+    width: 464px;
+    height: 459px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    padding: 0px 24px;
+    margin-top: 27px;
+    box-shadow: 1px 7px 5px #bdbebf;
+}
+
+.login__contents > h2{
+    padding-left: 15px;
+}
+.email__contents{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login__contents label{
+    font-weight: 500;
+}
+
+.login__contents input[type="email"], .login__contents input[type="password"]{
+    border-radius: 10px;
+    width: 396.6px;
+    height: 49px;
+    margin-left: 14px;
+    border: none;
+    box-shadow:  2px 5px 3px #bdbebf;
+    padding-left: 20px;
+    margin-top: 2px;
+    background-color: #F1EEEE;
+}
+
+.error{
+    font-size: 12px;
+    color: red;
+    padding: 5px;
+    display: none;
+}
+
+input:invalid {
+    display: block;
+}
+
+.password__contents{
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+}
+
+.label__password{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 146px;
+}
+
+.remember__contents{
+    margin-top: 10px;
+    padding-left: 18px;
+}
+
+.remember__contents > input{
+    cursor: pointer;
+}
+
+.login__contents input[type=checkbox]:checked {
+    background-color: #05D43F;
+}
+  
+.buttons__contents{
+    margin-top: 35px;
+    text-align: center;
+}
+
+.submit__btn{
+    background: #05D43F;
+    border: none;
+    width: 200px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    box-shadow:  1px 3px 4px #bdbebf;
+    cursor: pointer;
+}
+
+.signup__text{
+    justify-self: center;
+    padding-top: 6px;
+    font-weight: 500;
+}
+
+.signup__link{
+    cursor: pointer;
+}
+
+.signup__link a:link{
+    text-decoration: none; 
+}
+
+.signup__link:hover{
+    color: #05D43F;
+}
