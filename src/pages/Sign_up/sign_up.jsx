@@ -32,6 +32,7 @@ function sign_up() {
                 maxLength={50}
                 required
                 minLength={11}
+                id={styles._email}
               />
             </div>
             <div className={styles.username__div}>
@@ -44,6 +45,7 @@ function sign_up() {
                 maxLength={50}
                 required
                 minLength={6}
+                id={styles._username}
               />
             </div>
             <div className={styles.country__div}>
@@ -60,11 +62,12 @@ function sign_up() {
                 maxLength={20}
                 required
                 minLength={6}
+                id={styles._password}
               />
             </div>
             <div className={styles.acc_type__div}>
               <label>Account Type</label>
-              <select name="user_acc">
+              <select name="user_acc" id={styles._selectbtn}>
                 <option value="1">Individual</option>
                 <option value="2">Family</option>
                 <option value="3">SME</option>

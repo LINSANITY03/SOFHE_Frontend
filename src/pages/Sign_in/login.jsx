@@ -23,6 +23,7 @@ function login() {
               maxLength={50}
               required
               minLength={11}
+              id={login_styles._email}
             />
           </div>
           <div className={login_styles.password__contents}>
@@ -38,6 +39,7 @@ function login() {
               required
               maxLength={50}
               minLength={6}
+              id={login_styles._password}
             />
             <div className={login_styles.remember__contents}>
               <input

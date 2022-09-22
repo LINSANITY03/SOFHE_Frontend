@@ -76,7 +76,7 @@
     background-color: #F1EEEE;
     margin-left: 10px;
 }
-.signup__contents input[type="email"], input[type="text"], [type="password"],select{
+#_email, #_username, #_password, #_selectbtn{
     width: 260px;
     height: 30px;
     border: none;

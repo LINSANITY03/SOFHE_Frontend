@@ -34,7 +34,7 @@
     font-weight: 500;
 }
 
-.login__contents input[type="email"], .login__contents input[type="password"]{
+#_email, #_password{
     border-radius: 10px;
     width: 396.6px;
     height: 49px;

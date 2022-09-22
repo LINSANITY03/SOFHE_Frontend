@@ -12,7 +12,7 @@ function Cashflow() {
         </>
         <div className={style.sort__graph}>
           <label htmlFor="sort_btn">Sort by:</label>
-          <select name="sort_data" id="sort_btn">
+          <select name="sort_data" id={style.sort_btn}>
             <option value="Day">Day</option>
             <option value="Month">Month</option>
             <option value="Year">Year</option>
