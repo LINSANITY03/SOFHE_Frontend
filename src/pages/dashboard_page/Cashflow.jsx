@@ -6,7 +6,7 @@ function Cashflow() {
   return (
     <div className={style.cashflow__content}>
       <div className={style.upper__content}>
-        <h2>Cashflow</h2>
+        <p>Cashflow</p>
         <>
           <button className={style.Average__cashflow}>Average: 15993.03</button>
         </>

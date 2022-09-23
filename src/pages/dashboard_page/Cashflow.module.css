@@ -3,7 +3,7 @@
     flex-direction: column;
     border-radius: 25px;
     background: #E7E7E7;
-    margin: 10px;
+    margin: 3px;
     padding: 0 10px;
 }
 
@@ -14,9 +14,10 @@
     justify-items: center;
 }
 
-.upper__content > h2{
+.upper__content > p{
     justify-self: flex-start;
     margin-left: 20px;
+    font-weight: 800;
 }
 
 .Average__cashflow{
@@ -37,8 +38,9 @@
 }
 
 .sort__graph > label{
-    font-weight: 800;
+    font-weight: 700;
     font-size: 15px;
+    padding: 3px;
 }
 
 #sort_btn{
@@ -50,8 +52,5 @@
     text-align: center;
     background: #D9D9D9;
     box-shadow: 1px 4px 2px #bdbebf;
-}
-
-#sort_btn :focus{
-    outline: none;
+    
 }

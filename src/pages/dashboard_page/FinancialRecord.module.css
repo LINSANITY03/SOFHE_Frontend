@@ -1,0 +1,35 @@
+.body__content{
+    background: var(--background);
+    width: 572px;
+    height: 228px;
+    border-radius: 25px;
+    margin: 3px;
+}
+
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9px;
+}
+
+.header__content p{
+    margin: 0 20px;
+    font-weight: 700;
+}
+
+.row__body{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.income__content{
+    background: var(--income-background);
+}
+
+.expenses__content{
+    background: var(--expenses-background);
+}
+
+.saving__content{
+    background: var(--saving-background);
+}

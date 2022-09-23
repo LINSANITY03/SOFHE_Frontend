@@ -12,6 +12,7 @@ import Prediction from "./pages/Prediction_page/Prediction.jsx";
 import Profile from "./pages/Profile_page/Profile.jsx";
 import Setting from "./pages/Setting_page/Settings.jsx";
 import Support from "./pages/Support_page/Support.jsx";
+import "./utils/colors.css";
 
 function App() {
   return (
