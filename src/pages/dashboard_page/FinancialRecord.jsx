@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./FinancialRecord.module.css";
+import IncomeExpenses from "../../utils/IncomeExpenses";
 
 function FinancialRecord() {
   return (
@@ -13,7 +14,9 @@ function FinancialRecord() {
           <div className={styles.top__part}>
             <p>Total Income</p>
           </div>
-          <div className={styles.bar__graph}>asdasd</div>
+          <div className={styles.bar__graph}>
+            <IncomeExpenses />
+          </div>
           <div className="bottom__part">
             <p>100,000</p>
             <p>+17%</p>
