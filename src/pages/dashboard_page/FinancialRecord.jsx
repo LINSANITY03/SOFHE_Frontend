@@ -17,7 +17,7 @@ function FinancialRecord() {
           <div className={styles.bar__graph}>
             <IncomeExpenses />
           </div>
-          <div className="bottom__part">
+          <div className={styles.bottom__part}>
             <p>100,000</p>
             <p>+17%</p>
           </div>

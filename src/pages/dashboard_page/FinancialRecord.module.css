@@ -4,6 +4,8 @@
     height: 228px;
     border-radius: 25px;
     margin: 3px;
+    display: flex;
+    flex-direction: column;
 }
 
 .header__content{
@@ -20,10 +22,38 @@
 .row__body{
     display: grid;
     grid-template-columns: repeat(3, auto);
+    margin-top: 20px;
+}
+
+.row__body p{
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
 }
 
 .income__content{
     background: var(--income-background);
+    border-radius: 25px;
+    margin: 5px;
+}
+
+.top__part{
+    font-weight: 700;
+    margin-top: 10px;
+    
+}
+.bar__graph > div{
+    min-height: 0px  !important;
+}
+.bottom__part{
+    display: flex;
+    margin-bottom: 10px;
+    font-weight: 600;
+    justify-content: space-around;
+}
+
+.bottom__part :last-child{
+    color: var(--profit-margin);
 }
 
 .expenses__content{

@@ -10,17 +10,25 @@ const series = [
 
 const options = {
   chart: {
+    height: 100,
+    minheight: 100,
+    width: 100,
     toolbar: {
       show: false,
     },
+    colors: ["#026016"],
   },
+
   dataLabels: {
     enabled: false,
   },
   stroke: {
     curve: "smooth",
+    colors: ["#026016"],
   },
   grid: {
+    show: false,
+
     row: {
       colors: ["transparent"], // takes an array which will be repeated on columns
     },
@@ -40,7 +48,15 @@ const options = {
 };
 
 function IncomeExpenses() {
-  return <Chart options={options} series={series} type="area" height={100} />;
+  return (
+    <Chart
+      options={options}
+      series={series}
+      type="area"
+      height={100}
+      width={200}
+    />
+  );
 }
 
 export default IncomeExpenses;
