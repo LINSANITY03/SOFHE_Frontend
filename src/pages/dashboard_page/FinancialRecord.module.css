@@ -1,6 +1,6 @@
 .body__content{
     background: var(--background);
-    width: 572px;
+    width: 655px;
     height: 228px;
     border-radius: 25px;
     margin: 3px;
@@ -22,7 +22,7 @@
 .row__body{
     display: grid;
     grid-template-columns: repeat(3, auto);
-    margin-top: 20px;
+    margin-top: 14px;
 }
 
 .row__body p{
@@ -34,17 +34,18 @@
 .income__content{
     background: var(--income-background);
     border-radius: 25px;
-    margin: 5px;
+    margin: 6px 9px;
 }
 
 .top__part{
     font-weight: 700;
     margin-top: 10px;
-    
 }
+
 .bar__graph > div{
     min-height: 0px  !important;
 }
+
 .bottom__part{
     display: flex;
     margin-bottom: 10px;
@@ -52,14 +53,26 @@
     justify-content: space-around;
 }
 
-.bottom__part :last-child{
+.income__content .bottom__part :last-child{
     color: var(--profit-margin);
 }
 
 .expenses__content{
     background: var(--expenses-background);
+    border-radius: 25px;
+    margin: 6px 9px;
+}
+
+.expenses__content .bottom__part :last-child{
+    color: var(--loss-margin);
 }
 
 .saving__content{
     background: var(--saving-background);
+    border-radius: 25px;
+    margin: 6px 9px;
+}
+
+.saving__content .bottom__part :last-child{
+    color: var(--saving-margin);
 }

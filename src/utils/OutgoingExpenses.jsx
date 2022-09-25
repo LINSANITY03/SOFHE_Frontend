@@ -16,7 +16,7 @@ const options = {
     toolbar: {
       show: false,
     },
-    colors: ["#026016"],
+    colors: ["#E10D27"],
   },
 
   dataLabels: {
@@ -24,7 +24,8 @@ const options = {
   },
   stroke: {
     curve: "smooth",
-    colors: ["#026016"],
+    colors: ["#E10D27"],
+    opacity: 0.5,
   },
   grid: {
     show: false,

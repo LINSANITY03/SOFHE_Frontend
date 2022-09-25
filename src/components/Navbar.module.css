@@ -1,9 +1,10 @@
 .nav__contents{
     display: flex;
     width: 100%;
-    padding: 10px 0px;
+    padding: 3px 0px;
     align-items: center;
 }
+
 .user__intro{
     margin: 0;
     padding: 0;

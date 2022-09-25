@@ -11,7 +11,7 @@ import {
 function Navbar() {
   return (
     <nav className={styles.nav__contents}>
-      <h2 className={styles.user__intro}>Hello Pujan</h2>
+      <p className={styles.user__intro}>Hello Pujan</p>
       <div className={styles.buttons__content}>
         <button className={styles.account__button}>
           <span style={{ float: "left", fontWeight: 600 }}>
