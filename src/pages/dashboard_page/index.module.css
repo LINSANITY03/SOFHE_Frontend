@@ -1,11 +1,16 @@
+
 .dashboard__contents{
-    height: 100vh;
     display: flex;
 }
 
 .body__content{
-    width: 100%;
+    width: 100%;  
     margin-left: 253px;
+}
+
+.body__change{
+    width: 100%;  
+    margin-left: 52px;
 }
 
 .lower__body{
