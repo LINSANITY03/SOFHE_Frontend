@@ -7,7 +7,9 @@
     align-items: center;
     z-index: 99999;
     position: fixed;
-    transition: ease-in;
+    transition: all 0.7s cubic-bezier(0.5, -0.005, 0.2, 1) !important;
+    -webkit-transition: all 0.7s cubic-bezier(0.5, -0.005, 0.2, 1) !important;
+    
 }
 
 .main__change{
@@ -19,6 +21,8 @@
     align-items: center;
     z-index: 99999;
     position: fixed;
+    transition: all 0.3s cubic-bezier(0.5, -0.005, 0.2, 1) !important;
+    -webkit-transition: all 0.3s cubic-bezier(0.5, -0.005, 0.2, 1) !important;
 }
 
 .top__bar{
