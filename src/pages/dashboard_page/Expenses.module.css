@@ -1,0 +1,17 @@
+.body__content{
+    background: var(--background);
+    border-radius: 25px;
+    margin: 10px;
+    width: 100%;
+}
+
+.header__content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9px
+}
+
+.header__content p{
+    margin: 0 20px;
+    font-weight: 700;
+}

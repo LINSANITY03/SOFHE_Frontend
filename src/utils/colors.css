@@ -1,8 +1,10 @@
 
 :root{
     --background: #D9D9D9;
+    --background-1:  #E7E7E7;
     --box-shadow: #bdbebf;
     --text-color: #05D43F;
+    --text-color-1: #32A64B;
     --income-background: #A2E9B1;
     --expenses-background: #F3C2C2;
     --saving-background: #EBE5E5;
