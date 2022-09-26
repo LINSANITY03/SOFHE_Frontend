@@ -3,10 +3,16 @@
     --solid-white: white;
     --background: #D9D9D9;
     --background-1:  #E7E7E7;
+    --background-2: #F6F6F6;
     --box-shadow: #bdbebf;
+    --btn-background: #DCDCDC;
+    --input-background: #F1EEEE;
+    --btn-hover-bg: #b9b8b8;
     --text-color: #05D43F;
     --text-color-1: #32A64B;
     --text-color-2: #9E9E9E;
+    --social-color: #376C43;
+    --google-play-bg: #3A3838;
     --income-background: #A2E9B1;
     --expenses-background: #F3C2C2;
     --saving-background: #EBE5E5;

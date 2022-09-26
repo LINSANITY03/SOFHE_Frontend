@@ -11,13 +11,13 @@
     padding-left: 27px;
     padding-bottom: 30px;
     grid-gap: 30px;
-    color: #376C43;
+    color: var(--social-color);
 }
 
 .google__play{
     display: flex;
     align-items: center;
-    background: #3A3838;
+    background: var(--google-play-bg);
     border-radius: 25px;
     outline: none;
     border: none;
@@ -30,7 +30,7 @@
 }
 
 .text__google{
-    color: white;
+    color: var(--solid-white);
 }
 
 .right__hand{
@@ -43,7 +43,7 @@
 }
 .copyright{
     text-align: center;
-    background: #376C43;
+    background: var(--social-color);
     width: 100%;
     float: left;
     padding-top: 5px;

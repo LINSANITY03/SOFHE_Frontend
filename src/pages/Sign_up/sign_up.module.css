@@ -31,15 +31,15 @@
     content: "\2022";
     width: 1em;
     display: inline-block;
-    color: #05D43F;
+    color: var(--text-color);
 }
 
 .signup__contents{
-    background-color: #F6F6F6;
+    background-color: var(--background-2);
     width: 312px;
     height: 626px;
     border-radius: 25px;
-    box-shadow: 1px 7px 5px #bdbebf;
+    box-shadow: 1px 7px 5px var(--box-shadow);
     padding: 0 100px;
     display: flex;
     flex-direction: column
@@ -70,10 +70,10 @@
     height: 30px;
     border: none;
     border-radius: 10px;
-    box-shadow:  2px 5px 3px #bdbebf;
+    box-shadow:  2px 5px 3px var( --box-shadow);
     padding-left: 20px;
     margin-top: 7px;
-    background-color: #F1EEEE;
+    background-color: var(--input-background);
     margin-left: 10px;
 }
 #_email, #_username, #_password, #_selectbtn{
@@ -81,10 +81,10 @@
     height: 30px;
     border: none;
     border-radius: 10px;
-    box-shadow:  2px 5px 3px #bdbebf;
+    box-shadow:  2px 5px 3px var(--box-shadow);
     padding-left: 20px;
     margin-top: 7px;
-    background-color: #F1EEEE;
+    background-color: var(--input-background);
     margin-left: 10px;
 }
 
@@ -94,13 +94,13 @@
 }
 
 .submit__btn > button{
-    background: #05D43F;
+    background: var(--text-color);
     border: none;
-    color: white;
+    color: var(--solid-white);
     width: 277px;
     height: 57px;
     border-radius: 10px;
-    box-shadow:  1px 3px 4px #bdbebf;
+    box-shadow:  1px 3px 4px var(--box-shadow);
     cursor: pointer;
 }
 

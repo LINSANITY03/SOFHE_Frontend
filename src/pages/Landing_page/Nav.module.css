@@ -8,9 +8,9 @@
 }
 
 .nav_change{
-    background: white;
+    background: var(--solid-white);
     transition: all 0.5s ease-out;
-    box-shadow: 3px 10px 17px #bdbebf;
+    box-shadow: 3px 10px 17px var(--box-shadow);
 }
 
 .nav .nav_logo{
@@ -31,7 +31,7 @@
 }
 
 .btn{
-    background: #DCDCDC;
+    background: var(--btn-background);
     outline: none;
     border: none;
     border-radius: 10px;
@@ -40,7 +40,7 @@
 }
 
 .btn:hover{
-    background: #b9b8b8;
+    background: var(--btn-hover-bg);
     transition: all 1s ease-out;
     color: rgb(255, 255, 255);
 }

@@ -9,7 +9,7 @@
 }
 
 .login__contents{
-    background-color: #F6F6F6;
+    background-color: var(--background-2);
     width: 464px;
     height: 459px;
     border-radius: 25px;
@@ -18,7 +18,7 @@
     justify-self: center;
     padding: 0px 24px;
     margin-top: 27px;
-    box-shadow: 1px 7px 5px #bdbebf;
+    box-shadow: 1px 7px 5px var(--box-shadow);
 }
 
 .login__contents > h2{
@@ -40,17 +40,10 @@
     height: 49px;
     margin-left: 14px;
     border: none;
-    box-shadow:  2px 5px 3px #bdbebf;
+    box-shadow:  2px 5px 3px var( --box-shadow);
     padding-left: 20px;
     margin-top: 2px;
-    background-color: #F1EEEE;
-}
-
-.error{
-    font-size: 12px;
-    color: red;
-    padding: 5px;
-    display: none;
+    background-color: var(--input-background);
 }
 
 input:invalid {
@@ -77,10 +70,6 @@ input:invalid {
 .remember__contents > input{
     cursor: pointer;
 }
-
-.login__contents input[type=checkbox]:checked {
-    background-color: #05D43F;
-}
   
 .buttons__contents{
     margin-top: 35px;
@@ -88,14 +77,14 @@ input:invalid {
 }
 
 .submit__btn{
-    background: #05D43F;
+    background: var(--text-color);
     border: none;
     width: 200px;
     height: 36px;
     border-radius: 10px;
     font-size: 14px;
-    color: white;
-    box-shadow:  1px 3px 4px #bdbebf;
+    color: var( --solid-white);
+    box-shadow:  1px 3px 4px var(--box-shadow);
     cursor: pointer;
 }
 
@@ -114,5 +103,5 @@ input:invalid {
 }
 
 .signup__link:hover{
-    color: #05D43F;
+    color: var(--text-color);
 }
