@@ -17,6 +17,7 @@
     "apexcharts": "^3.35.5",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap-icons": "^1.9.1",
+    "jwt-decode": "^3.1.2",
     "node-sass": "^7.0.3",
     "node-scss": "^7.0.3",
     "postcss-flexbugs-fixes": "^5.0.2",

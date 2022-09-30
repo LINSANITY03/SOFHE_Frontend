@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import sofha_logo from "../../assets/sofhe.png";
 import login_styles from "./login.module.css";
 import { Link } from "react-router-dom";
+import AuthContext from "../../services/AuthContext";
 
-function login() {
+function Login() {
+  let { loginUser } = useContext(AuthContext);
   return (
     <div className={login_styles.main__container}>
       <Link to="/">
@@ -12,17 +14,17 @@ function login() {
 
       <div className={login_styles.login__contents}>
         <h2>Log in</h2>
-        <form action="/dashboard">
+        <form onSubmit={loginUser}>
           <div className={login_styles.email__contents}>
-            <label>Email</label>
+            <label>Username</label>
             <input
-              type="email"
-              name="user_email"
-              title="example@gmail.com"
-              placeholder="Email"
-              maxLength={50}
+              type="text"
+              name="user_name"
+              title="Unique username"
+              placeholder="Username"
+              maxLength={20}
               required
-              minLength={11}
+              minLength={4}
               id={login_styles._email}
             />
           </div>
@@ -70,4 +72,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
