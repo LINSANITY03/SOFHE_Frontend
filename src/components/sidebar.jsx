@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./sidebar.module.css";
 import profile_img from "../assets/smile.jpg";
 import sofha_logo from "../assets/sofhe.png";
@@ -11,8 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Sidebardata from "./Sidebardata";
 import { Link } from "react-router-dom";
+import AuthContext from "../services/AuthContext";
 
 function Sidebar(props) {
+  let { logoutUser } = useContext(AuthContext);
   return (
     <div
       className={props.sidebar ? styles.main__container : styles.main__change}
@@ -82,7 +84,7 @@ function Sidebar(props) {
             Sign out <FontAwesomeIcon icon={faArrowRightToBracket} />
           </p>
         ) : (
-          <p title="Sign out">
+          <p title="Sign out" onClick={logoutUser}>
             <FontAwesomeIcon icon={faArrowRightToBracket} />
           </p>
         )}

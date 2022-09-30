@@ -67,9 +67,11 @@ function App() {
             exact
             path="/dashboard"
             element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
+              <AuthProvider>
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              </AuthProvider>
             }
           />
 

@@ -10,11 +10,11 @@ import {
 import AuthContext from "../services/AuthContext";
 
 function Navbar() {
-  let { loginUser } = useContext(AuthContext);
+  let { user } = useContext(AuthContext);
   return (
     <nav className={styles.nav__contents}>
       <p className={styles.user__intro}>
-        Hello {loginUser.user ? loginUser.user : "Anonmyous"}
+        Hello {user ? user.username : "Anonmyous"}
       </p>
       <div className={styles.buttons__content}>
         <button className={styles.account__button}>
