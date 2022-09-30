@@ -1,8 +1,9 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute.jsx";
 import Banner from "./pages/Landing_page/Banner.js";
 import Nav from "./pages/Landing_page/Nav.js";
 import Body from "./pages/Landing_page/Body.jsx";
 import Footer from "./pages/Landing_page/Footer.jsx";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/Sign_in/login.jsx";
 import SignUp from "./pages/Sign_up/sign_up.jsx";
 import Dashboard from "./pages/dashboard_page/index.jsx";
@@ -16,8 +17,8 @@ import "./utils/colors.css";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <Routes>
           {/* default page */}
           <Route
@@ -61,9 +62,9 @@ function App() {
             exact
             path="/dashboard"
             element={
-              <>
+              <PrivateRoute>
                 <Dashboard />
-              </>
+              </PrivateRoute>
             }
           />
 
@@ -133,8 +134,8 @@ function App() {
             }
           />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
