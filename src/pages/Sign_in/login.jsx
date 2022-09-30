@@ -8,9 +8,11 @@ function Login() {
   let { loginUser } = useContext(AuthContext);
   return (
     <div className={login_styles.main__container}>
-      <Link to="/">
-        <img src={sofha_logo} alt="Sofhe" className="logo" />
-      </Link>
+      <div className={login_styles.logo__content}>
+        <Link to="/">
+          <img src={sofha_logo} alt="Sofhe" className="logo" />
+        </Link>
+      </div>
 
       <div className={login_styles.login__contents}>
         <h2>Log in</h2>

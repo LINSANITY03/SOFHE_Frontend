@@ -31,7 +31,7 @@
 }
 
 .login__contents label{
-    font-weight: 500;
+    font-weight: 700;
 }
 
 #_email, #_password{
@@ -91,7 +91,7 @@ input:invalid {
 .signup__text{
     justify-self: center;
     padding-top: 6px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .signup__link{

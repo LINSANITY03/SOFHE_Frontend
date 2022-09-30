@@ -20,7 +20,7 @@
     display: grid;
     grid-template-rows: repeat(4, auto);
     grid-gap: 37px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .points{
@@ -37,7 +37,7 @@
 .signup__contents{
     background-color: var(--background-2);
     width: 312px;
-    height: 626px;
+    height: 100%;
     border-radius: 25px;
     box-shadow: 1px 7px 5px var(--box-shadow);
     padding: 0 100px;
@@ -61,7 +61,7 @@
 }
 
 .signup__contents label{
-    font-weight: 500;
+    font-weight: 700;
     margin-right: 213px;
 }
 
@@ -91,6 +91,7 @@
 .submit__btn{
     margin-top: 35px;
     align-self: center;
+    
 }
 
 .submit__btn > button{
@@ -102,11 +103,12 @@
     border-radius: 10px;
     box-shadow:  1px 3px 4px var(--box-shadow);
     cursor: pointer;
+    font-weight: 700;
 }
 
 .login__text{
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .signin__text{
