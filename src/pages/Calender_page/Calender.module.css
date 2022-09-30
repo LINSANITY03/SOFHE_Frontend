@@ -1,0 +1,10 @@
+.body__content{
+    display: flex;
+    
+}
+
+.right__hand{
+    flex: 6;
+
+}
+
