@@ -1,12 +1,21 @@
 import React from "react";
 import Sidebar from "./Sidebar_new";
-import styles from "./Calender.module.css";
+import "./Calender.scss";
+import Navbar from "./Navbar_new";
+import Calendermodule from "../../components/Calender_module";
 
 function Calender() {
   return (
-    <div className={styles.body__content}>
+    <div className="body__content">
       <Sidebar />
-      <div className={styles.right__hand}>asdasdasdasd</div>
+      <div className="right__hand">
+        <Navbar />
+        <div className="widget__container">
+          <div className="working__calender">
+            <Calendermodule />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
