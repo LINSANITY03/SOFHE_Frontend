@@ -38,15 +38,16 @@
             border-radius: 10px;
             width: 10rem;
             height: 2rem;
-            margin-left: 14px;
+            margin-left: 30px;
             border: none;
             box-shadow:  2px 5px 3px var( --box-shadow);
-            padding-left: 20px;
+            padding-left: 27px;
             margin-top: 2px;
             background-color: var(--input-background);
         }  
     }
     .btn__content{
+        text-align: center;
 
         button{
             background: var(--text-color);

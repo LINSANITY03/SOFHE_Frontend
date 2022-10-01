@@ -4,6 +4,8 @@
     flex: 1;
     font-family: Elina;
     background-color: var(--sidebar-bg);
+    position: fixed;
+    z-index: 100;
 
     p{
         margin: 0;

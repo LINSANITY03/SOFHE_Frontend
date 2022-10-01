@@ -54,7 +54,7 @@ function AddEvent(props) {
               type="number"
               id="income"
               placeholder="Decimal or real value"
-              step="2"
+              step="any"
               name="income"
               required
             />
