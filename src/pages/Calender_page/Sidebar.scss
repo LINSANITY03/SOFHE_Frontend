@@ -1,9 +1,9 @@
 .total__div{
-    border-right: 0.5px solid rgb(230, 228, 228);
+    border-right: 0.5px solid var(--sidebar-line);
     min-height: 100vh;
     flex: 1;
     font-family: Elina;
-    background-color: #F6F5FA;
+    background-color: var(--sidebar-bg);
 
     p{
         margin: 0;
@@ -55,7 +55,7 @@
                 cursor: pointer;
 
                 &:hover{
-                    background-color: #EEECF8;
+                    background-color: var(--sidebar-content-hover);
                 }
 
                 .icon{

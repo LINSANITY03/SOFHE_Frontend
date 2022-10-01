@@ -8,14 +8,14 @@ import AddEvent from "../../components/AddEvent";
 function Calender() {
   const [create, setCreate] = useState(false);
   const ShowCreateModel = useCallback(() => {
-    console.log("this is event callback function");
     setCreate(!create);
   }, [create]);
 
   return (
-    <div className="body__content">
+    <div className={"body__content"}>
+      {create ? <div className="overlay"></div> : <></>}
       <div className={`${create ? "show__model" : "hide__model"}`}>
-        {create ? <AddEvent /> : ""}
+        {create ? <AddEvent ShowCreateModel={ShowCreateModel} /> : ""}
       </div>
       <Sidebar />
       <div className="right__hand">

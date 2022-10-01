@@ -2,12 +2,19 @@ import React from "react";
 import "moment-timezone";
 import "./AddEvent.scss";
 import moment from "moment-timezone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-function AddEvent() {
+function AddEvent(props) {
   const cdate1 = moment().format("yy-MM-DD");
   return (
     <div className="addevent__content">
-      <div className="top__bar">Add event</div>
+      <div className="top__bar">
+        <div className="title">Add event</div>
+        <div className="model__close" onClick={props.ShowCreateModel}>
+          <FontAwesomeIcon icon={faClose} />
+        </div>
+      </div>
       <form>
         <div className="body__content">
           <div className="user__content">
@@ -26,7 +33,6 @@ function AddEvent() {
             <input
               type="text"
               title="Event Title"
-              placeholder="Add Title"
               max_length="20"
               id="title"
               name="title"
@@ -37,21 +43,27 @@ function AddEvent() {
             <label htmlFor="description">Description</label>
             <input
               type="text"
-              placeholder="Description for event"
               max_length="300"
               name="description"
               id="description"
             />
           </div>
-          <div className="user__content">
+          <div className="income__content">
             <label htmlFor="income">Income</label>
-            <input type="number" id="income" step="2" name="income" required />
+            <input
+              type="number"
+              id="income"
+              placeholder="Decimal or real value"
+              step="2"
+              name="income"
+              required
+            />
           </div>
           <div className="date__content">
-            <label htmlFor="date">Date {cdate1}</label>
+            <label htmlFor="date">Date</label>
             <input type="date" id="date" name="date" max={cdate1} required />
           </div>
-          <div className="user__content">
+          <div className="time__content">
             <label htmlFor="time">Time</label>
             <input type="time" id="time" name="time" required />
           </div>

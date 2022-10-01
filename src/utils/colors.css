@@ -20,4 +20,7 @@
     --loss-margin: #E10D27;
     --saving-margin: #383536;
     --sidebar-title: #efefef;
+    --sidebar-bg: #F6F5FA;
+    --sidebar-line:  rgb(230, 228, 228);
+    --sidebar-content-hover: #EEECF8;
 }
