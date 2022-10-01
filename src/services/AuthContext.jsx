@@ -48,7 +48,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   let logoutUser = () => {
-    console.log("logout");
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
@@ -56,7 +55,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   let updateToken = async () => {
-    console.log("update token call");
     let response = await fetch("http://127.0.0.1:8000/auth/token/refresh/", {
       method: "POST",
       headers: {
@@ -81,6 +79,7 @@ export const AuthProvider = ({ children }) => {
     user: user,
     loginUser: loginUser,
     logoutUser: logoutUser,
+    authTokens: authTokens,
   };
 
   useEffect(() => {

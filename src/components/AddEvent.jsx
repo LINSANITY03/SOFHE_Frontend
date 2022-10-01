@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import "moment-timezone";
-import "./AddEvent.scss";
 import moment from "moment-timezone";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import AddingTasks from "../services/AddTasks";
+import AuthContext from "../services/AuthContext";
+import "./AddEvent.scss";
 
 function AddEvent(props) {
   const cdate1 = moment().format("yy-MM-DD");
+  let { user, authTokens } = useContext(AuthContext);
+
   return (
     <div className="addevent__content">
       <div className="top__bar">
-        <div className="title">Add event</div>
+        <div className="title">Add event </div>
         <div className="model__close" onClick={props.ShowCreateModel}>
           <FontAwesomeIcon icon={faClose} />
         </div>
       </div>
-      <form>
+      <form onSubmit={AddingTasks}>
         <div className="body__content">
-          <div className="user__content">
-            <label htmlFor="user">User</label>
-            <input
-              type="text"
-              value="admin"
-              name="user"
-              id="user"
-              disabled
-              required
-            />
-          </div>
+          <input
+            type="hidden"
+            value={user.user_id}
+            name="_user_id"
+            disabled
+            required
+          />
+          <input type="hidden" value={authTokens.access} name="_access" />
           <div className="title__content">
             <label htmlFor="title">Title</label>
             <input

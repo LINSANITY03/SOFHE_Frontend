@@ -22,125 +22,123 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          {/* default page */}
-          <Route
-            index
-            exact
-            path="/"
-            element={
-              <>
-                <Nav />
-                <Banner />
-                <Body />
-                <Footer />
-              </>
-            }
-          ></Route>
+        <AuthProvider>
+          <Routes>
+            {/* default page */}
+            <Route
+              index
+              exact
+              path="/"
+              element={
+                <>
+                  <Nav />
+                  <Banner />
+                  <Body />
+                  <Footer />
+                </>
+              }
+            ></Route>
 
-          {/* Sign in page */}
-          <Route
-            exact
-            path="/login"
-            element={
-              <AuthProvider>
+            {/* Sign up page */}
+            <Route
+              exact
+              path="/signup"
+              element={
+                <>
+                  <SignUp />
+                </>
+              }
+            />
+
+            {/* Sign in page */}
+            <Route
+              exact
+              path="/login"
+              element={
                 <PrivateRouteLoggedIn>
                   <SignIn />
                 </PrivateRouteLoggedIn>
-              </AuthProvider>
-            }
-          />
+              }
+            />
 
-          {/* Sign up page */}
-          <Route
-            exact
-            path="/signup"
-            element={
-              <>
-                <SignUp />
-              </>
-            }
-          />
-
-          {/* Dashboard page */}
-          <Route
-            exact
-            path="/dashboard"
-            element={
-              <AuthProvider>
+            {/* Dashboard page */}
+            <Route
+              exact
+              path="/dashboard"
+              element={
                 <PrivateRoute>
                   <Dashboard />
                 </PrivateRoute>
-              </AuthProvider>
-            }
-          />
+              }
+            />
 
-          {/* Activity page*/}
-          <Route
-            exact
-            path="/dashboard/activity"
-            element={
-              <>
-                <Activity />
-              </>
-            }
-          />
+            {/* Activity page*/}
+            <Route
+              exact
+              path="/dashboard/activity"
+              element={
+                <>
+                  <Activity />
+                </>
+              }
+            />
 
-          {/* Calender page*/}
-          <Route
-            exact
-            path="/dashboard/calender"
-            element={
-              <>
-                <Calender />
-              </>
-            }
-          />
+            {/* Calender page*/}
+            <Route
+              exact
+              path="/dashboard/calender"
+              element={
+                <>
+                  <Calender />
+                </>
+              }
+            />
 
-          {/* Profile page*/}
-          <Route
-            exact
-            path="/dashboard/profile"
-            element={
-              <>
-                <Profile />
-              </>
-            }
-          />
+            {/* Profile page*/}
+            <Route
+              exact
+              path="/dashboard/profile"
+              element={
+                <>
+                  <Profile />
+                </>
+              }
+            />
 
-          {/* Prediction page*/}
-          <Route
-            exact
-            path="/dashboard/prediction"
-            element={
-              <>
-                <Prediction />
-              </>
-            }
-          />
+            {/* Prediction page*/}
+            <Route
+              exact
+              path="/dashboard/prediction"
+              element={
+                <>
+                  <Prediction />
+                </>
+              }
+            />
 
-          {/* Setting page*/}
-          <Route
-            exact
-            path="/dashboard/setting"
-            element={
-              <>
-                <Setting />
-              </>
-            }
-          />
+            {/* Setting page*/}
+            <Route
+              exact
+              path="/dashboard/setting"
+              element={
+                <>
+                  <Setting />
+                </>
+              }
+            />
 
-          {/* Support page*/}
-          <Route
-            exact
-            path="/dashboard/support"
-            element={
-              <>
-                <Support />
-              </>
-            }
-          />
-        </Routes>
+            {/* Support page*/}
+            <Route
+              exact
+              path="/dashboard/support"
+              element={
+                <>
+                  <Support />
+                </>
+              }
+            />
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );
