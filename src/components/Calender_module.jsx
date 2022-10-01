@@ -10,6 +10,26 @@ function Calender_module() {
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
+        customButtons={{
+          myCustomButton: {
+            text: "+ Create",
+            click: function () {
+              alert("clicked the custom button!");
+            },
+          },
+        }}
+        headerToolbar={{
+          start: "title", // will normally be on the left. if RTL, will be on the right
+          center: "myCustomButton",
+          end: "today prev,next", // will normally be on the right. if RTL, will be on the left
+        }}
+        events={[
+          // { title: "event 3", date: "2022-10-01", display: "background" },
+          // { title: "event 4", date: "2022-10-01", display: "background" },
+          // { title: "event 5", date: "2022-10-01", display: "background" },
+          // { title: "event 6", date: "2022-10-01", display: "background" },
+          { title: "event 7", date: "2022-10-01", display: "background" },
+        ]}
       />
     </section>
   );
