@@ -1,16 +1,44 @@
 import React, { useContext } from "react";
 import "moment-timezone";
 import moment from "moment-timezone";
-
+import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import AddingTasks from "../services/AddTasks";
 import AuthContext from "../services/AuthContext";
 import "./AddEvent.scss";
 
 function AddEvent(props) {
   const cdate1 = moment().format("yy-MM-DD");
   let { user, authTokens } = useContext(AuthContext);
+  let AddingTasks = async (e) => {
+    e.preventDefault();
+
+    let response = await fetch("http://127.0.0.1:8000/api/add-tasks/", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _user: e.target._user_id.value,
+        _title: e.target.title.value,
+        _description: e.target.description.value,
+        _income: e.target.income.value,
+        _date: e.target.date.value,
+        _time: e.target.time.value,
+      }),
+    });
+
+    let data = await response.json();
+    if (response.status === 201) {
+      toast.success("Event Created");
+      console.log(data);
+      props.ShowCreateModel();
+    } else {
+      alert("unsuccessful");
+      toast.warning("Event Creation Failed");
+    }
+  };
 
   return (
     <div className="addevent__content">
@@ -29,7 +57,6 @@ function AddEvent(props) {
             disabled
             required
           />
-          <input type="hidden" value={authTokens.access} name="_access" />
           <div className="title__content">
             <label htmlFor="title">Title</label>
             <input

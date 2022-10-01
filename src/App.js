@@ -17,6 +17,8 @@ import Setting from "./pages/Setting_page/Settings.jsx";
 import Support from "./pages/Support_page/Support.jsx";
 import "./utils/colors.css";
 import PrivateRouteLoggedIn from "./utils/PrivateRouteLoggedIn.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -140,6 +142,7 @@ function App() {
           </Routes>
         </AuthProvider>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

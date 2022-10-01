@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -42,8 +42,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("authTokens", JSON.stringify(data));
 
       navigate("/dashboard", { replace: true });
+      toast.success("Login Success");
     } else {
-      alert("Something went wrong!");
+      toast.error("Bad User Credential");
     }
   };
 
