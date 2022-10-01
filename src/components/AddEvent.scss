@@ -1,0 +1,13 @@
+.addevent__content{
+    display:flex;
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+    background-color: var(--background-2);
+    font-weight: 700;
+
+    .body__content{
+        display:flex;
+        flex-direction: column;
+    }
+}

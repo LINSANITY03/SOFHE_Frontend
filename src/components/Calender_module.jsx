@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-function Calender_module() {
+function Calender_module(props) {
   return (
     <section>
       <FullCalendar
@@ -13,15 +13,13 @@ function Calender_module() {
         customButtons={{
           myCustomButton: {
             text: "+ Create",
-            click: function () {
-              alert("clicked the custom button!");
-            },
+            click: props.ShowCreateModel,
           },
         }}
         headerToolbar={{
           start: "title", // will normally be on the left. if RTL, will be on the right
-          center: "myCustomButton",
-          end: "today prev,next", // will normally be on the right. if RTL, will be on the left
+
+          end: "myCustomButton today prev,next", // will normally be on the right. if RTL, will be on the left
         }}
         events={[
           // { title: "event 3", date: "2022-10-01", display: "background" },
