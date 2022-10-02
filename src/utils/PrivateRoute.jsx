@@ -1,10 +1,18 @@
 import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import AuthContext from "../services/AuthContext";
+import { toast } from "react-toastify";
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = () => {
   let { user } = useContext(AuthContext);
-  return user ? children : <Navigate to={"/login"} />;
+  return user ? (
+    <Outlet />
+  ) : (
+    <>
+      {toast.warning("Login First")}
+      <Navigate to="/login" />
+    </>
+  );
 };
 
 export default PrivateRoute;

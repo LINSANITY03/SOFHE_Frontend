@@ -28,15 +28,15 @@
         margin-top: 20px;
         font-size: 12px;
 
-        .user__content, .title__content, .description__content, .income__content, .date__content, .time__content{
+        .user__content, .title__content, .description__content, .income__content, .datetime__content, .status__content{
             
             display: flex;
             flex-direction: column;
         }
 
-        #user, #title, #description, #income, #date, #time{
+        #user, #title, #description, #income, #datetime, #status{
             border-radius: 10px;
-            width: 10rem;
+            width: 12rem;
             height: 2rem;
             margin-left: 30px;
             border: none;

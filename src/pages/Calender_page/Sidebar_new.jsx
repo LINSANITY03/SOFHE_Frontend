@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import profile_icon from "../../assets/profile_icon.png";
 import sofhe__logo from "../../assets/sofhe.png";
 import "./Sidebar.scss";
@@ -15,8 +15,10 @@ import {
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import AuthContext from "../../services/AuthContext";
 
 function Index() {
+  let { user, logoutUser } = useContext(AuthContext);
   return (
     <div className="total__div">
       <div className="sidebar__content">
@@ -91,13 +93,14 @@ function Index() {
             className="profile__icon"
           />
           <div className="user__details">
-            <span>Pujan Thing</span>
-            <span>example@gmail.com</span>
+            <span>{user.username}</span>
+            <span>{user.email}</span>
           </div>
 
           <FontAwesomeIcon
             icon={faArrowRightToBracket}
             className="icon sign__out"
+            onClick={logoutUser}
           />
         </div>
       </div>

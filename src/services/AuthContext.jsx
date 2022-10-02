@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const AuthContext = createContext();
 
@@ -18,8 +18,6 @@ export const AuthProvider = ({ children }) => {
       : null
   );
   let [loading, setLoading] = useState(true);
-
-  const navigate = useNavigate();
 
   let loginUser = async (e) => {
     e.preventDefault();
@@ -40,9 +38,8 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwtDecode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-
-      navigate("/dashboard", { replace: true });
       toast.success("Login Success");
+      <Navigate to="/dashboard" />;
     } else {
       toast.error("Bad User Credential");
     }
@@ -52,7 +49,8 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
-    navigate("/");
+
+    <Navigate to="/" />;
   };
 
   let updateToken = async () => {

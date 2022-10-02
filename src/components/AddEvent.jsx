@@ -8,7 +8,8 @@ import AuthContext from "../services/AuthContext";
 import "./AddEvent.scss";
 
 function AddEvent(props) {
-  const cdate1 = moment().format("yy-MM-DD");
+  const cdate1 = moment().format("yy-MM-DDThh:mm");
+
   let { user, authTokens } = useContext(AuthContext);
   let AddingTasks = async (e) => {
     e.preventDefault();
@@ -24,19 +25,17 @@ function AddEvent(props) {
         _title: e.target.title.value,
         _description: e.target.description.value,
         _income: e.target.income.value,
-        _date: e.target.date.value,
-        _time: e.target.time.value,
+        _status: e.target.status.value,
+        _datetime: e.target.datetime.value,
       }),
     });
 
     let data = await response.json();
-    if (response.status === 201) {
+    if (response.status === 201 || data.data === 1) {
       toast.success("Event Created");
-      console.log(data);
       props.ShowCreateModel();
     } else {
-      alert("unsuccessful");
-      toast.warning("Event Creation Failed");
+      toast.error("Event Creation Failed");
     }
   };
 
@@ -83,18 +82,30 @@ function AddEvent(props) {
               type="number"
               id="income"
               placeholder="Decimal or real value"
+              min="1"
+              max="99999999.9999"
               step="any"
               name="income"
               required
             />
           </div>
-          <div className="date__content">
-            <label htmlFor="date">Date</label>
-            <input type="date" id="date" name="date" max={cdate1} required />
+          <div className="status__content">
+            <label htmlFor="status">Status</label>
+            <select name="status" id="status" required>
+              <option value="">------------</option>
+              <option value="0">Income</option>
+              <option value="1">Expense</option>
+            </select>
           </div>
-          <div className="time__content">
-            <label htmlFor="time">Time</label>
-            <input type="time" id="time" name="time" required />
+          <div className="datetime__content">
+            <label htmlFor="datetime">DateTime</label>
+            <input
+              type="datetime-local"
+              id="datetime"
+              name="datetime"
+              max={cdate1}
+              required
+            />
           </div>
         </div>
         <div className="btn__content">

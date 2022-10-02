@@ -23,8 +23,8 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <AuthProvider>
+      <AuthProvider>
+        <Router>
           <Routes>
             {/* default page */}
             <Route
@@ -43,7 +43,6 @@ function App() {
 
             {/* Sign up page */}
             <Route
-              exact
               path="/signup"
               element={
                 <>
@@ -53,26 +52,14 @@ function App() {
             />
 
             {/* Sign in page */}
-            <Route
-              exact
-              path="/login"
-              element={
-                <PrivateRouteLoggedIn>
-                  <SignIn />
-                </PrivateRouteLoggedIn>
-              }
-            />
+            <Route exact element={<PrivateRouteLoggedIn />}>
+              <Route element={<SignIn />} path="/login" exact />
+            </Route>
 
             {/* Dashboard page */}
-            <Route
-              exact
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
+            <Route exact element={<PrivateRoute />}>
+              <Route element={<Dashboard />} path="/dashboard" exact />
+            </Route>
 
             {/* Activity page*/}
             <Route
@@ -140,8 +127,8 @@ function App() {
               }
             />
           </Routes>
-        </AuthProvider>
-      </Router>
+        </Router>
+      </AuthProvider>
       <ToastContainer />
     </div>
   );
