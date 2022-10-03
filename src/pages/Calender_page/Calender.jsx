@@ -43,7 +43,11 @@ function Calender() {
     <div className={"body__content"}>
       {create ? <div className="overlay"></div> : <></>}
       <div className={`${create ? "show__model" : "hide__model"}`}>
-        {create ? <AddEvent ShowCreateModel={ShowCreateModel} /> : ""}
+        {create ? (
+          <AddEvent ShowCreateModel={ShowCreateModel} getEvents={getEvents} />
+        ) : (
+          ""
+        )}
       </div>
       <Sidebar />
       <div className="right__hand">

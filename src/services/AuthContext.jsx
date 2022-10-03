@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }) => {
       if (authTokens) {
         updateToken();
       }
-    }, [twentyFourMinutes]);
+    }, twentyFourMinutes);
 
     return () => clearInterval(interval);
   }, [authTokens, loading]);

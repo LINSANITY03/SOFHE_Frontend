@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import "moment-timezone";
 import moment from "moment-timezone";
 import { toast } from "react-toastify";
@@ -8,7 +8,8 @@ import AuthContext from "../services/AuthContext";
 import "./AddEvent.scss";
 
 function AddEvent(props) {
-  const cdate1 = moment().format("yy-MM-DDThh:mm");
+  const cdate1 = moment().format("yy-MM-DDTHH:MM");
+  console.log(cdate1);
 
   let { user, authTokens } = useContext(AuthContext);
   let AddingTasks = async (e) => {
@@ -17,7 +18,7 @@ function AddEvent(props) {
     let response = await fetch("http://127.0.0.1:8000/api/add-tasks/", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + String(authTokens.access),
+        // Authorization: "Bearer " + String(authTokens.access),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -33,7 +34,9 @@ function AddEvent(props) {
     let data = await response.json();
     if (response.status === 201 || data === 1) {
       toast.success("Event Created");
+
       props.ShowCreateModel();
+      props.getEvents();
     } else {
       toast.error("Event Creation Failed");
     }
