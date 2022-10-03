@@ -5,20 +5,18 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
 function Calender_module(props) {
-  const cfinal_data = props.events.map((event) => {
-    return {
-      title: event.title,
-      date: event.date_only,
-    };
-  });
+  let cfinal_data = props.events.map((event) => ({
+    title: event.title,
+    date: event.date_only,
+  }));
 
   const json_data = [
-    { title: "First pay", date: "2022-10-02" },
+    { id: 1, title: "First pay", date: "2022-10-02" },
 
-    { title: "Mobile Phone Cover", date: "2022-10-02" },
+    { id: 2, title: "Mobile Phone Cover", date: "2022-10-02" },
 
-    { title: "Mobile Phone Cover", date: "2022-10-02" },
-    { title: "education loan", date: "2022-10-02" },
+    { id: 3, title: "Mobile Phone Cover", date: "2022-10-02" },
+    { id: 4, title: "education loan", date: "2022-10-02" },
   ];
   console.log("cfinal_data", cfinal_data);
   console.log("json_data", json_data);
@@ -40,7 +38,7 @@ function Calender_module(props) {
           end: "myCustomButton today prev,next", // will normally be on the right. if RTL, will be on the left
         }}
         // initialEvents={[{ title: "event 3", date: "2022-10-02" }]}
-        initialEvents={[cfinal_data]}
+        initialEvents={cfinal_data}
       />
     </section>
   );
