@@ -5,6 +5,24 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
 function Calender_module(props) {
+  const cfinal_data = props.events.map((event) => {
+    return {
+      title: event.title,
+      date: event.date_only,
+    };
+  });
+
+  const json_data = [
+    { title: "First pay", date: "2022-10-02" },
+
+    { title: "Mobile Phone Cover", date: "2022-10-02" },
+
+    { title: "Mobile Phone Cover", date: "2022-10-02" },
+    { title: "education loan", date: "2022-10-02" },
+  ];
+  console.log("cfinal_data", cfinal_data);
+  console.log("json_data", json_data);
+
   return (
     <section>
       <FullCalendar
@@ -21,13 +39,8 @@ function Calender_module(props) {
 
           end: "myCustomButton today prev,next", // will normally be on the right. if RTL, will be on the left
         }}
-        events={[
-          // { title: "event 3", date: "2022-10-01", display: "background" },
-          // { title: "event 4", date: "2022-10-01", display: "background" },
-          // { title: "event 5", date: "2022-10-01", display: "background" },
-          // { title: "event 6", date: "2022-10-01", display: "background" },
-          { title: "event 7", date: "2022-10-01", display: "background" },
-        ]}
+        // initialEvents={[{ title: "event 3", date: "2022-10-02" }]}
+        initialEvents={[cfinal_data]}
       />
     </section>
   );

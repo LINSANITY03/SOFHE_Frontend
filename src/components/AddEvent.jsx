@@ -31,7 +31,7 @@ function AddEvent(props) {
     });
 
     let data = await response.json();
-    if (response.status === 201 || data.data === 1) {
+    if (response.status === 201 || data === 1) {
       toast.success("Event Created");
       props.ShowCreateModel();
     } else {

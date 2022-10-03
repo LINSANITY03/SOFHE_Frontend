@@ -82,12 +82,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    let fourMinutes = 1000 * 60 * 4;
+    let twentyFourMinutes = 1000 * 60 * 29;
     let interval = setInterval(() => {
       if (authTokens) {
         updateToken();
       }
-    }, fourMinutes);
+    }, [twentyFourMinutes]);
 
     return () => clearInterval(interval);
   }, [authTokens, loading]);
