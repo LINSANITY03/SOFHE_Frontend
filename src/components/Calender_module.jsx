@@ -9,13 +9,19 @@ function Calender_module(props) {
     title: event.title,
     date: event.date_only,
     id: event.id,
-    backgroundColor: event.status ? "#376C43" : "#E10D27",
+    backgroundColor: event.status == 0 ? "#62b976" : "#e09490",
   }));
+
+  const handleDateClick = (arg) => {
+    // bind with an arrow function
+    props.showAllEvent(arg.dateStr);
+  };
 
   return (
     <section>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
+        dateClick={handleDateClick}
         initialView="dayGridMonth"
         customButtons={{
           myCustomButton: {

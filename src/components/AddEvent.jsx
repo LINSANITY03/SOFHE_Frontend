@@ -8,13 +8,9 @@ import AuthContext from "../services/AuthContext";
 import "./AddEvent.scss";
 
 function AddEvent(props) {
-  const cdate1 = moment().format("yy-MM-DDTHH:MM");
-  console.log(cdate1);
-
   let { user, authTokens } = useContext(AuthContext);
   let AddingTasks = async (e) => {
     e.preventDefault();
-
     let response = await fetch("http://127.0.0.1:8000/api/add-tasks/", {
       method: "POST",
       headers: {
@@ -64,7 +60,7 @@ function AddEvent(props) {
             <input
               type="text"
               title="Event Title"
-              max_length="20"
+              maxLength="20"
               id="title"
               name="title"
               required
@@ -74,7 +70,7 @@ function AddEvent(props) {
             <label htmlFor="description">Description</label>
             <input
               type="text"
-              max_length="300"
+              maxLength="300"
               name="description"
               id="description"
             />
@@ -106,7 +102,6 @@ function AddEvent(props) {
               type="datetime-local"
               id="datetime"
               name="datetime"
-              max={cdate1}
               required
             />
           </div>

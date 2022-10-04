@@ -11,16 +11,7 @@ function Navbar_new() {
   return (
     <div className="navbar_content">
       <div className="wrapper__content">
-        <div className="search__content">
-          <input
-            type="search"
-            placeholder="Search..."
-            name="s"
-            className="search"
-          />
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </div>
-
+        <div className="page__title">Calender</div>
         <div className="utility__panel">
           <div className="item">
             <FontAwesomeIcon icon={faBell} />

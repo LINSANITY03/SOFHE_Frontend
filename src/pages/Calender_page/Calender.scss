@@ -20,6 +20,143 @@
         margin-left: 178px;
 
         .widget__container{
+
+            .show_events__contents{
+                display: block;
+                background-color: var(--sidebar-bg);
+                padding: 21px;
+                margin: 23px;
+                border-radius: 20px;
+                width: 80%;
+                margin-left: 10%;
+
+                .top__bar{
+                    display: flex;
+                    gap: 20px;
+                    justify-content: space-between;
+
+                    .search__content{
+                        display: flex;
+                        align-items: center;
+                        border: 0.5px solid lightgray;
+                        padding: 3px;
+                
+                        input{
+                            border: none;
+                            outline: none;
+                            background: transparent;
+                
+                            &::placeholder{
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    #close__icon{
+                        cursor: pointer;
+                    }
+                }
+                
+                .title__content{
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+                .events__list{                    
+                    max-height: 400px;
+                    overflow: scroll;
+                    overflow-x: hidden;
+                    margin-top: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .indiviual__event{
+                        display: flex;
+                        background-color: var(--event-list-bg);
+                        margin: 5px;
+                        height: 40px;
+                        margin-top: 10px;
+                        border-radius: 15px;
+                        padding: 5px 15px;                       
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 10px;
+                        width: 80%;
+                        justify-content: space-between;
+
+                        #event_icon{
+                            color: var(--utls-color);
+                        }
+
+                        .description__contents{
+                            text-transform: capitalize;
+
+                            .title{
+                                font-size: 15px;
+                            }
+
+                            .description{
+                                font-size: 11px;
+                                color: #7c7c7ced;
+                            }
+                        }
+
+                        .date, .time , .status{
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+
+                            #upward__icon{
+                                color: var(--text-color-1);
+                            }
+
+                            #downward__icon{
+                                color: var(--loss-margin);
+                            }
+                        }
+
+                        .buttons__content{
+                            display: flex;
+                            gap: 20px;
+
+                            .btns{
+                                height: 25px;
+                                width: 63px;
+                                border-radius: 7px;
+                                border: none;
+                                outline: none;
+                                font-weight: 700;
+                                font-size: 15px;
+                                margin: 10px;
+                                
+                            }
+                            .event__edit{
+                                
+                                color: var(--profit-margin);
+                                background: var(--income-background);
+                                font-family: 'Elina';
+                                
+                            }
+
+                            .event__delete{
+                                color: var(--loss-margin);
+                                background: var(--expenses-background);
+                                font-family: 'Elina';
+
+                            }
+                        }
+                    }
+
+                    .hide__events{
+                        display: none;
+                    }
+                }
+            }
+
+            .hide_events__contents{
+                display: none
+            }
+
             .working__calender{
                 padding: 20px;
             }
