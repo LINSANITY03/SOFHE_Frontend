@@ -1,17 +1,20 @@
-import React, { useContext } from "react";
-import "moment-timezone";
+import React from "react";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../services/AuthContext";
 import "./AddEvent.scss";
+import moment from "moment-timezone";
 
-function AddEvent(props) {
-  let { user, authTokens } = useContext(AuthContext);
-  let AddingTasks = async (e) => {
+function EditEvent(props) {
+  let timedate = moment(props.selectevent.task_datetime).format(
+    "YYYY-MM-DDTHH:mm"
+  );
+
+  let EditTask = async (e) => {
     e.preventDefault();
+    console.log(e.target.description.value);
     let response = await fetch(
-      `http://127.0.0.1:8000/api/add-tasks/${user.user_id}`,
+      `http://127.0.0.1:8000/api/edit-tasks/${props.selectevent.id}/${props.user.user_id}`,
       {
         method: "POST",
         headers: {
@@ -30,31 +33,39 @@ function AddEvent(props) {
 
     let data = await response.json();
     if (response.status === 201 || data === 1) {
-      toast.success("Event Created");
+      toast.success("Event Edited");
 
       props.ShowCreateModel();
       props.getEvents();
     } else {
-      toast.error("Event Creation Failed");
+      toast.error("Event Edit Failed");
     }
   };
 
   return (
     <div className="addevent__content">
       <div className="top__bar">
-        <div className="title">Add event </div>
-        <div className="model__close" onClick={props.ShowCreateModel}>
+        <div className="title">Edit event </div>
+        <div className="model__close" onClick={props.ShowEditModel}>
           <FontAwesomeIcon icon={faClose} />
         </div>
       </div>
-      <form onSubmit={AddingTasks}>
+      <form onSelect={EditTask}>
         <div className="body__content">
+          <input
+            type="hidden"
+            value={props.user.user_id}
+            name="_user_id"
+            disabled
+            required
+          />
           <div className="title__content">
             <label htmlFor="title">Title</label>
             <input
               type="text"
               title="Event Title"
               maxLength="20"
+              defaultValue={props.selectevent.title}
               id="title"
               name="title"
               required
@@ -65,6 +76,7 @@ function AddEvent(props) {
             <input
               type="text"
               maxLength="300"
+              defaultValue={props.selectevent.description}
               name="description"
               id="description"
             />
@@ -75,6 +87,7 @@ function AddEvent(props) {
               type="number"
               id="income"
               placeholder="Decimal or real value"
+              defaultValue={props.selectevent.credit}
               min="1"
               max="99999999.9999"
               step="any"
@@ -84,7 +97,12 @@ function AddEvent(props) {
           </div>
           <div className="status__content">
             <label htmlFor="status">Status</label>
-            <select name="status" id="status" required>
+            <select
+              name="status"
+              id="status"
+              defaultValue={props.selectevent.status ? "1" : "0"}
+              required
+            >
               <option value="">------------</option>
               <option value="0">Income</option>
               <option value="1">Expense</option>
@@ -96,6 +114,7 @@ function AddEvent(props) {
               type="datetime-local"
               id="datetime"
               name="datetime"
+              defaultValue={timedate}
               required
             />
           </div>
@@ -108,4 +127,4 @@ function AddEvent(props) {
   );
 }
 
-export default AddEvent;
+export default EditEvent;

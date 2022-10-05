@@ -15,6 +15,7 @@ import {
   faCaretUp,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
+import EditEvent from "../../components/EditEvent";
 
 function Calender() {
   const [create, setCreate] = useState(false);
@@ -23,6 +24,7 @@ function Calender() {
   const [currentevents, setCurrentEvents] = useState("");
   const [allevent, setAllEvents] = useState("");
   const [eventlist, setEvenList] = useState(true);
+  const [selectevent, setSelectEvent] = useState("");
 
   // callback function to show/hide the +Create Model with the help of setstate
   const ShowCreateModel = useCallback(() => {
@@ -30,6 +32,11 @@ function Calender() {
   }, [create]);
 
   // callback function to show/hide the +Create Model with the help of setstate
+  const ShowEditModel = useCallback(() => {
+    setSelectEvent(!selectevent);
+  }, [selectevent]);
+
+  // callback function to show/hide the All Event Model with the help of setstate
   const ShowEventDetailModel = useCallback(() => {
     setEvenList(!eventlist);
   }, [eventlist]);
@@ -75,10 +82,21 @@ function Calender() {
   // html code -->
   return (
     <div className={"body__content"}>
-      {create ? <div className="overlay"></div> : <></>}
+      {create || selectevent ? <div className="overlay"></div> : <></>}
       <div className={`${create ? "show__model" : "hide__model"}`}>
         {create ? (
           <AddEvent ShowCreateModel={ShowCreateModel} getEvents={getEvents} />
+        ) : (
+          ""
+        )}
+      </div>
+      <div className={`${selectevent ? "show__model" : "hide__model"}`}>
+        {selectevent ? (
+          <EditEvent
+            ShowEditModel={ShowEditModel}
+            user={user}
+            selectevent={selectevent}
+          />
         ) : (
           ""
         )}
@@ -161,7 +179,12 @@ function Calender() {
                   </div>
                   <div className="buttons__content">
                     <div className="edit__btn">
-                      <button className="event__edit btns">Edit</button>
+                      <button
+                        className="event__edit btns"
+                        onClick={() => setSelectEvent(event)}
+                      >
+                        Edit
+                      </button>
                     </div>
                     <div className="delete__btn">
                       <button className="event__delete btns">Delete</button>
