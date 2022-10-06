@@ -16,6 +16,7 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import EditEvent from "../../components/EditEvent";
+import { toast } from "react-toastify";
 
 function Calender() {
   const [create, setCreate] = useState(false);
@@ -79,6 +80,31 @@ function Calender() {
     return response;
   };
 
+  // send event and user Id to the server for deletion
+  let DeletingTask = async (eventId) => {
+    console.log(eventId);
+    console.log(user.user_id);
+    let response = await fetch(
+      `http://127.0.0.1:8000/api/delete-tasks/${eventId}/${user.user_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          // Authorization: "Bearer " + String(authTokens.access),
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    let data = await response.json();
+    if (response.status === 200) {
+      toast.success(data.message);
+      getEvents();
+      setEvenList(!eventlist);
+    } else {
+      toast.error(data.message);
+    }
+  };
+
   // html code -->
   return (
     <div className={"body__content"}>
@@ -96,6 +122,7 @@ function Calender() {
             ShowEditModel={ShowEditModel}
             user={user}
             selectevent={selectevent}
+            getEvents={getEvents}
           />
         ) : (
           ""
@@ -181,13 +208,20 @@ function Calender() {
                     <div className="edit__btn">
                       <button
                         className="event__edit btns"
+                        type="button"
                         onClick={() => setSelectEvent(event)}
                       >
                         Edit
                       </button>
                     </div>
                     <div className="delete__btn">
-                      <button className="event__delete btns">Delete</button>
+                      <button
+                        className="event__delete btns"
+                        type="button"
+                        onClick={() => DeletingTask(event.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>

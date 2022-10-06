@@ -32,13 +32,13 @@ function EditEvent(props) {
     );
 
     let data = await response.json();
-    if (response.status === 201 || data === 1) {
-      toast.success("Event Edited");
+    if (response.status === 202) {
+      toast.success(data.message);
 
-      props.ShowCreateModel();
+      props.ShowEditModel();
       props.getEvents();
     } else {
-      toast.error("Event Edit Failed");
+      toast.error(data.message);
     }
   };
 
@@ -50,7 +50,7 @@ function EditEvent(props) {
           <FontAwesomeIcon icon={faClose} />
         </div>
       </div>
-      <form onSelect={EditTask}>
+      <form onSubmit={EditTask}>
         <div className="body__content">
           <input
             type="hidden"
