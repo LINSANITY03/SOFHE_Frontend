@@ -23,6 +23,7 @@ function Calender_module(props) {
         plugins={[dayGridPlugin, interactionPlugin]}
         dateClick={handleDateClick}
         initialView="dayGridMonth"
+        dayMaxEvents={true}
         customButtons={{
           myCustomButton: {
             text: "+ Create",
