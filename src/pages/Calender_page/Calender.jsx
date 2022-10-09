@@ -99,7 +99,6 @@ function Calender() {
     if (response.status === 200) {
       toast.success(data.message);
       getEvents();
-      setEvenList(!eventlist);
     } else {
       toast.error(data.message);
     }

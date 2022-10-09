@@ -100,6 +100,7 @@ function Index() {
           <FontAwesomeIcon
             icon={faArrowRightToBracket}
             className="icon sign__out"
+            title="Logout"
             onClick={logoutUser}
           />
         </div>
