@@ -42,7 +42,9 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            
+            a:link{
+                text-decoration: none;
+            }
 
             .title{
                 font-size: 10px;
@@ -64,6 +66,7 @@
                     color: var(--text-color-1);
                 }
             }
+
         }
     }
 

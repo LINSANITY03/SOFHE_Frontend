@@ -129,7 +129,7 @@ function Calender() {
       </div>
       <Sidebar />
       <div className="right__hand">
-        <Navbar />
+        <Navbar page_name="Calender" />
         <div className="widget__container">
           <div
             className={`${

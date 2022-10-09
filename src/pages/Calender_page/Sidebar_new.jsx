@@ -16,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import AuthContext from "../../services/AuthContext";
+import { Link } from "react-router-dom";
 
 function Index() {
   let { user, logoutUser } = useContext(AuthContext);
@@ -28,10 +29,12 @@ function Index() {
 
         <div className="home__content">
           <ul>
-            <li>
-              <FontAwesomeIcon icon={faHouseChimney} className="icon" />
-              <span>Home</span>
-            </li>
+            <Link to="/dashboard">
+              <li>
+                <FontAwesomeIcon icon={faHouseChimney} className="icon" />
+                <span id="sb_link">Home</span>
+              </li>
+            </Link>
           </ul>
         </div>
 
@@ -40,19 +43,21 @@ function Index() {
             <p className="title">Manage</p>
             <li>
               <FontAwesomeIcon icon={faCalendar} className="icon" />
-              <span>Calender</span>
+              <span id="sb_link">Calender</span>
             </li>
-            <li>
-              <FontAwesomeIcon icon={faListCheck} className="icon" />
-              <span>Events</span>
-            </li>
+            <Link to="/dashboard/event">
+              <li>
+                <FontAwesomeIcon icon={faListCheck} className="icon" />
+                <span id="sb_link">Events</span>
+              </li>
+            </Link>
             <li>
               <FontAwesomeIcon icon={faImage} className="icon" />
-              <span>Media</span>
+              <span id="sb_link">Media</span>
             </li>
             <li>
               <FontAwesomeIcon icon={faFile} className="icon" />
-              <span>Documents</span>
+              <span id="sb_link">Documents</span>
             </li>
           </ul>
         </div>
@@ -63,11 +68,11 @@ function Index() {
             <li>
               {" "}
               <FontAwesomeIcon icon={faCoins} className="icon" />
-              <span>Statement</span>
+              <span id="sb_link">Statement</span>
             </li>
             <li>
               <FontAwesomeIcon icon={faMicrochip} className="icon" />
-              <span>Prediction</span>
+              <span id="sb_link">Prediction</span>
             </li>
           </ul>
         </div>
@@ -77,11 +82,11 @@ function Index() {
             <p className="title">More</p>
             <li>
               <FontAwesomeIcon icon={faTrashCan} className="icon" />
-              <span>Trash</span>
+              <span id="sb_link">Trash</span>
             </li>
             <li>
               <FontAwesomeIcon icon={faCircleInfo} className="icon" />
-              <span>Notification</span>
+              <span id="sb_link">Notification</span>
             </li>
           </ul>
         </div>

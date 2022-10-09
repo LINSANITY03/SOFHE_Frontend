@@ -7,11 +7,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.scss";
 
-function Navbar_new() {
+function Navbar_new(props) {
   return (
     <div className="navbar_content">
       <div className="wrapper__content">
-        <div className="page__title">Calender</div>
+        <div className="page__title">{props.page_name}</div>
         <div className="utility__panel">
           <div className="item">
             <FontAwesomeIcon icon={faBell} />

@@ -1,6 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute.jsx";
 import { AuthProvider } from "./services/AuthContext.jsx";
+import PrivateRouteLoggedIn from "./utils/PrivateRouteLoggedIn.jsx";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./utils/colors.css";
 
 import Banner from "./pages/Landing_page/Banner.js";
 import Nav from "./pages/Landing_page/Nav.js";
@@ -15,11 +20,7 @@ import Prediction from "./pages/Prediction_page/Prediction.jsx";
 import Profile from "./pages/Profile_page/Profile.jsx";
 import Setting from "./pages/Setting_page/Settings.jsx";
 import Support from "./pages/Support_page/Support.jsx";
-import "./utils/colors.css";
-import PrivateRouteLoggedIn from "./utils/PrivateRouteLoggedIn.jsx";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import Index from "./pages/Event_page/Index";
 function App() {
   return (
     <div className="App">
@@ -126,6 +127,9 @@ function App() {
                 </>
               }
             />
+
+            {/* Event page */}
+            <Route exact path="/dashboard/event" element={<Index />} />
           </Routes>
         </Router>
       </AuthProvider>
