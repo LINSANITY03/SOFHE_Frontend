@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Sidebar from "../Calender_page/Sidebar_new";
 import Navbar from "../Calender_page/Navbar_new";
 import "./Index.scss";
 import EventTable from "../../utils/EvenTable.tsx";
 
 import { AiOutlineSearch } from "react-icons/ai";
+import AuthContext from "../../services/AuthContext";
 
-function index() {
+function Index() {
+  const { events } = useContext(AuthContext);
+
   return (
     <div className="body__content">
       <Sidebar />
@@ -32,33 +35,13 @@ function index() {
               </div>
             </div>
           </div>
-          {/* <div className="item__list">
-            <table>
-              <tr>
-                <th>checkbox</th>
-                <th>Title //icon</th>
-                <th>Description //icon</th>
-                <th>Credit //icon</th>
-                <th>Status //icon</th>
-                <th>Created //icon</th>
-                <th>Last Updated //icon</th>
-              </tr>
-              <tr>
-                <td>checkbox</td>
-                <td>this is title</td>
-                <td>this is description</td>
-                <td>this is credit</td>
-                <td>this is status</td>
-                <td>2022-10-03 08:53</td>
-                <td>2022-10-8 11:29</td>
-              </tr>
-            </table>
-          </div> */}
-          <EventTable />
+          <div className="data__table">
+            <EventTable events={events} />
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default index;
+export default Index;

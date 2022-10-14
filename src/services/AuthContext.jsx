@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
       : null
   );
   let [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState([]);
 
   let loginUser = async (e) => {
     e.preventDefault();
@@ -74,11 +75,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  let getEvents = async () => {
+    let response = await fetch(
+      `http://127.0.0.1:8000/api/all-tasks/${user.user_id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + String(authTokens.access),
+        },
+      }
+    );
+    let data = await response.json();
+    if (response.status === 200) {
+      setEvents(data);
+    } else if (response.statusText === "Unauthorized") {
+      alert("Unauthorized");
+    }
+    return response;
+  };
+
   let contextData = {
     user: user,
     loginUser: loginUser,
     logoutUser: logoutUser,
     authTokens: authTokens,
+    events: events,
   };
 
   useEffect(() => {
@@ -91,6 +113,10 @@ export const AuthProvider = ({ children }) => {
 
     return () => clearInterval(interval);
   }, [authTokens, loading]);
+
+  useEffect(() => {
+    getEvents();
+  }, []);
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
   );

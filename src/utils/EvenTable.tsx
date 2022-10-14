@@ -1,4 +1,4 @@
-import React, {useState}  from "react";
+import React, { useState } from "react";
 
 
 import { alpha } from '@mui/material/styles';
@@ -45,22 +45,6 @@ function createData(
   };
 }
 
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
-];
-
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -89,6 +73,7 @@ function getComparator<Key extends keyof any>(
 // need to support IE11, you can use Array.prototype.sort() directly
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
+  console.log(stabilizedThis)
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
@@ -111,31 +96,31 @@ const headCells: readonly HeadCell[] = [
     id: 'name',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Title',
   },
   {
     id: 'calories',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Description',
   },
   {
     id: 'fat',
     numeric: true,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Credit (Rs)',
   },
   {
     id: 'carbs',
     numeric: true,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Status',
   },
   {
     id: 'protein',
     numeric: true,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Uploaded',
   },
 ];
 
@@ -196,10 +181,12 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   );
 }
 
+// interface with key as numSelected
 interface EnhancedTableToolbarProps {
   numSelected: number;
 }
 
+// EnhancedTableToolbar is responsible to make toolbar dynamic when user selected an array
 const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const { numSelected } = props;
 
@@ -214,6 +201,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
         }),
       }}
     >
+      {/* when user selects an array the toolbar need to display additional information */}
       {numSelected > 0 ? (
         <Typography
           sx={{ flex: '1 1 100%' }}
@@ -226,11 +214,11 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       ) : (
         <Typography
           sx={{ flex: '1 1 100%' }}
-          variant="h6"
+          variant="h5"
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          User Events
         </Typography>
       )}
       {numSelected > 0 ? (
@@ -250,18 +238,60 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   );
 };
 
-function EnhancedTable() {
-  const [order, setOrder] = useState<Order>('asc');
+interface EventsProps {
+  events: {
+    id: number
+    title: string
+    description: string
+    credit: string
+    date_only: string
+    time_only: string
+    status: boolean
+    task_datetime: string
+  }[]
+}
+// main function export
+function EnhancedTable(props: EventsProps) {
+  const [order, setOrder] = useState<Order>('asc'); /* initialize with asc string with Order type */
   const [orderBy, setOrderBy] = useState<keyof Data>('calories');
+  console.log(orderBy)
+  /* only dict key can be used with calories initialized */
   const [selected, setSelected] = useState<readonly string[]>([]);
+  /* initialize with empty array of string which is immutable */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  // const rows1 = [
+  //   createData('KitKat', 518, 26.0, 65, 7.0),
+  //   createData('Lollipop', 392, 0.2, 98, 0.0),
+  //   createData('Marshmallow', 318, 0, 81, 2.0),
+  //   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  //   createData('Jelly Bean', 375, 0.0, 94, 0.0),
+  //   createData('Oreo', 437, 18.0, 63, 4.0),
+  //   createData('Cupcake', 305, 3.7, 67, 4.3),
+  //   createData('Donut', 452, 25.0, 51, 4.9),
+  //   createData('Eclair', 262, 16.0, 24, 6.0),
+  //   createData('Nougat', 360, 19.0, 9, 37.0),
+  //   createData('Honeycomb', 408, 3.2, 87, 6.5),
+  //   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  //   createData('Gingerbread', 356, 16.0, 49, 3.9),
+  // ];
+
+
+  const rows = props.events.map((event) => (
+    createData(event.title, 305, 3.7, 67, 4.3)
+  ));
+
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: keyof Data,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
+    console.log('orderBy', orderBy)
+    console.log('property', property)
+    console.log('order', order)
+    console.log('isAsc', isAsc)
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
@@ -314,6 +344,7 @@ function EnhancedTable() {
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
+        {/* sends to selected array length to enhancedTableToolbar */}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
