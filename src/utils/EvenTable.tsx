@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 
+import Moment from 'react-moment';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCaretDown,
+  faCaretUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,8 +28,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
+import './EvenTable.scss';
+
 interface Data {
-  id: number;
   title: string;
   description: string;
   credit: number;
@@ -32,7 +40,6 @@ interface Data {
 
 function createData(
   title: string,
-  id: number,
   description: string,
   credit: number,
   status: boolean,
@@ -40,7 +47,6 @@ function createData(
 ): Data {
   return {
     title,
-    id,
     description,
     credit,
     status,
@@ -99,12 +105,6 @@ const headCells: readonly HeadCell[] = [
     numeric: false,
     disablePadding: true,
     label: 'Title',
-  },
-  {
-    id: 'id',
-    numeric: true,
-    disablePadding: false,
-    label: 'ID',
   },
   {
     id: 'description',
@@ -166,7 +166,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            // align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -175,7 +175,11 @@ function EnhancedTableHead(props: EnhancedTableProps) {
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
-              {headCell.label}
+              <Typography
+                fontWeight="600"
+                fontFamily='Elina'
+              >{headCell.label}</Typography>
+
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
@@ -216,6 +220,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
           color="inherit"
           variant="subtitle1"
           component="div"
+          fontWeight="600"
+          fontFamily='Elina'
         >
           {numSelected} selected
         </Typography>
@@ -224,6 +230,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
           sx={{ flex: '1 1 100%' }}
           variant="h5"
           id="tableTitle"
+          fontWeight="600"
+          fontFamily='Elina'
           component="div"
         >
           User Events
@@ -273,7 +281,7 @@ function EnhancedTable(props: EventsProps) {
 
   // get array of data from api and store in rows 
   const rows = props.events.map((event) => (
-    createData(event.title, event.id, event.description, event.credit, event.status, event.task_datetime)
+    createData(event.title, event.description, event.credit, event.status, event.task_datetime)
   ));
 
 
@@ -371,6 +379,7 @@ function EnhancedTable(props: EventsProps) {
                       tabIndex={-1}
                       key={row.title}
                       selected={isItemSelected}
+                      className='table__row'
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
@@ -381,19 +390,53 @@ function EnhancedTable(props: EventsProps) {
                           }}
                         />
                       </TableCell>
+
                       <TableCell
                         component="th"
                         id={labelId}
                         scope="row"
                         padding="none"
                       >
-                        {row.title}
+                        <Typography
+                          fontFamily='Elina'
+                          fontSize={12}
+                          fontWeight={600}
+                        >{row.title}</Typography>
                       </TableCell>
-                      <TableCell align="right">{row.id}</TableCell>
-                      <TableCell align="right">{row.description}</TableCell>
-                      <TableCell align="right">{row.credit}</TableCell>
-                      <TableCell align="right">{row.status ? 'Expense' : 'Income'}</TableCell>
-                      <TableCell align="right">{row.updated}</TableCell>
+
+                      <TableCell ><Typography
+                        fontFamily='Elina'
+                        fontSize={12}
+                        fontWeight={600}
+                      >{row.description}</Typography></TableCell>
+
+                      <TableCell ><Typography
+                        fontFamily='Elina'
+                        fontSize={12}
+                        fontWeight={600}
+                      >{row.credit.toLocaleString()}</Typography></TableCell>
+
+                      <TableCell >{row.status ?
+                        <FontAwesomeIcon
+                          icon={faCaretDown}
+                          id="downward__icon"
+                          size="2x"
+                        /> : <FontAwesomeIcon
+                          icon={faCaretUp}
+                          id="upward__icon"
+                          size="2x"
+                        />}</TableCell>
+                      <TableCell>
+                        <Typography
+                          fontFamily='Elina'
+                          fontSize={12}
+                          fontWeight={600}
+                        >
+                          <Moment format="YYYY-MM-DD HH:MM A">
+                            {row.updated}
+                          </Moment>
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -419,7 +462,7 @@ function EnhancedTable(props: EventsProps) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </Box>
+    </Box >
   );
 }
 
