@@ -22,26 +22,29 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
 interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
+  id: number;
+  title: string;
+  description: string;
+  credit: number;
+  status: boolean;
+  updated: string;
 }
 
 function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
+  title: string,
+  id: number,
+  description: string,
+  credit: number,
+  status: boolean,
+  updated: string,
 ): Data {
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    title,
+    id,
+    description,
+    credit,
+    status,
+    updated,
   };
 }
 
@@ -61,8 +64,8 @@ function getComparator<Key extends keyof any>(
   order: Order,
   orderBy: Key,
 ): (
-  a: { [key in Key]: number | string },
-  b: { [key in Key]: number | string },
+  a: { [key in Key]: number | string | boolean },
+  b: { [key in Key]: number | string | boolean },
 ) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
@@ -73,7 +76,6 @@ function getComparator<Key extends keyof any>(
 // need to support IE11, you can use Array.prototype.sort() directly
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  console.log(stabilizedThis)
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
@@ -93,34 +95,40 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
   {
-    id: 'name',
+    id: 'title',
     numeric: false,
     disablePadding: true,
     label: 'Title',
   },
   {
-    id: 'calories',
+    id: 'id',
+    numeric: true,
+    disablePadding: false,
+    label: 'ID',
+  },
+  {
+    id: 'description',
     numeric: true,
     disablePadding: false,
     label: 'Description',
   },
   {
-    id: 'fat',
+    id: 'credit',
     numeric: true,
     disablePadding: false,
-    label: 'Credit (Rs)',
+    label: 'Credit',
   },
   {
-    id: 'carbs',
+    id: 'status',
     numeric: true,
     disablePadding: false,
     label: 'Status',
   },
   {
-    id: 'protein',
+    id: 'updated',
     numeric: true,
     disablePadding: false,
-    label: 'Uploaded',
+    label: 'Updated',
   },
 ];
 
@@ -238,12 +246,13 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   );
 };
 
+// interface for the props 
 interface EventsProps {
   events: {
     id: number
     title: string
     description: string
-    credit: string
+    credit: number
     date_only: string
     time_only: string
     status: boolean
@@ -253,33 +262,18 @@ interface EventsProps {
 // main function export
 function EnhancedTable(props: EventsProps) {
   const [order, setOrder] = useState<Order>('asc'); /* initialize with asc string with Order type */
-  const [orderBy, setOrderBy] = useState<keyof Data>('calories');
+  const [orderBy, setOrderBy] = useState<keyof Data>('title');
   console.log(orderBy)
+  console.log(props.events)
   /* only dict key can be used with calories initialized */
   const [selected, setSelected] = useState<readonly string[]>([]);
   /* initialize with empty array of string which is immutable */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // const rows1 = [
-  //   createData('KitKat', 518, 26.0, 65, 7.0),
-  //   createData('Lollipop', 392, 0.2, 98, 0.0),
-  //   createData('Marshmallow', 318, 0, 81, 2.0),
-  //   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  //   createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  //   createData('Oreo', 437, 18.0, 63, 4.0),
-  //   createData('Cupcake', 305, 3.7, 67, 4.3),
-  //   createData('Donut', 452, 25.0, 51, 4.9),
-  //   createData('Eclair', 262, 16.0, 24, 6.0),
-  //   createData('Nougat', 360, 19.0, 9, 37.0),
-  //   createData('Honeycomb', 408, 3.2, 87, 6.5),
-  //   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  //   createData('Gingerbread', 356, 16.0, 49, 3.9),
-  // ];
-
-
+  // get array of data from api and store in rows 
   const rows = props.events.map((event) => (
-    createData(event.title, 305, 3.7, 67, 4.3)
+    createData(event.title, event.id, event.description, event.credit, event.status, event.task_datetime)
   ));
 
 
@@ -298,19 +292,19 @@ function EnhancedTable(props: EventsProps) {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.title);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event: React.MouseEvent<unknown>, title: string) => {
+    const selectedIndex = selected.indexOf(title);
     let newSelected: readonly string[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, title);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -334,7 +328,7 @@ function EnhancedTable(props: EventsProps) {
     setPage(0);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (title: string) => selected.indexOf(title) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -365,17 +359,17 @@ function EnhancedTable(props: EventsProps) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.title);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.title)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.title}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -393,12 +387,13 @@ function EnhancedTable(props: EventsProps) {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.title}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.id}</TableCell>
+                      <TableCell align="right">{row.description}</TableCell>
+                      <TableCell align="right">{row.credit}</TableCell>
+                      <TableCell align="right">{row.status ? 'Expense' : 'Income'}</TableCell>
+                      <TableCell align="right">{row.updated}</TableCell>
                     </TableRow>
                   );
                 })}

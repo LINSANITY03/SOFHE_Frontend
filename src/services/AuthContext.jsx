@@ -117,6 +117,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     getEvents();
   }, []);
+
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
   );
