@@ -267,6 +267,7 @@ interface EventsProps {
     task_datetime: string
   }[]
 }
+
 // main function export
 function EnhancedTable(props: EventsProps) {
   const [order, setOrder] = useState<Order>('asc'); /* initialize with asc string with Order type */
@@ -283,7 +284,6 @@ function EnhancedTable(props: EventsProps) {
   const rows = props.events.map((event) => (
     createData(event.title, event.description, event.credit, event.status, event.task_datetime)
   ));
-
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -460,6 +460,12 @@ function EnhancedTable(props: EventsProps) {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
+          sx={{
+            ".MuiTablePagination-selectLabel, .MuiInputBase-root, .MuiTablePagination-displayedRows": {
+              fontFamily: 'Elina',
+              fontWeight: 600
+            }
+          }}
         />
       </Paper>
     </Box >
