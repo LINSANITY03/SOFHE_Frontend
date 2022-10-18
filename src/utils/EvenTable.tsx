@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 
 import Moment from 'react-moment';
 import EditEvent from "../components/EditEvent";
+import AddEvent from "../components/AddEvent";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -280,7 +281,9 @@ interface EventsProps {
     time_only: string
     status: boolean
     task_datetime: string
-  }[]
+  }[],
+  create: boolean,
+  ShowCreateModel: void
 }
 
 // main function export
@@ -294,13 +297,13 @@ function EnhancedTable(props: EventsProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  // set data of selected event for edit
   const [selectevent, setSelectEvent] = useState<Data | string | boolean>("");
 
   // callback function to show/hide the +Create Model with the help of setstate
   const ShowEditModel = useCallback(() => {
     setSelectEvent(!selectevent);
   }, [selectevent]);
-
 
   // get array of data from api and store in rows 
   const rows = props.events.map((event) => (
@@ -366,7 +369,14 @@ function EnhancedTable(props: EventsProps) {
 
   return (
     <>
-      {selectevent ? <div className="overlay"></div> : <></>}
+      {props.create || selectevent ? <div className="overlay"></div> : <></>}
+      <div className={`${props.create ? "show__model" : "hide__model"}`}>
+        {props.create ? (
+          <AddEvent ShowCreateModel={props.ShowCreateModel} getEvents={props.getEvents} />
+        ) : (
+          ""
+        )}
+      </div>
       <div className={`${selectevent ? "show__model" : "hide__model"}`}>
         {selectevent ? (
           <EditEvent
@@ -470,7 +480,7 @@ function EnhancedTable(props: EventsProps) {
                             fontSize={12}
                             fontWeight={600}
                           >
-                            <Moment format="YYYY-MM-DD">{row.task_datetime}</Moment><Moment format="HH:mm A">{row.task_datetime}</Moment>
+                            <Moment format="YYYY-MM-DD HH:mm A">{row.task_datetime}</Moment>
                           </Typography>
                         </TableCell>
 

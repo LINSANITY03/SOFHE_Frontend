@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import Sidebar from "../Calender_page/Sidebar_new";
 import Navbar from "../Calender_page/Navbar_new";
 import "./Index.scss";
@@ -10,6 +10,13 @@ import AuthContext from "../../services/AuthContext";
 function Index() {
   const { events, user, getEvents } = useContext(AuthContext);
 
+  // show/hide model to create event
+  const [create, setCreate] = useState(false);
+
+  const ShowCreateModel = useCallback(() => {
+    setCreate(!create);
+  }, [create]);
+
   return (
     <div className="body__content">
       <Sidebar />
@@ -18,7 +25,11 @@ function Index() {
         <div className="event__body">
           <div className="top__bar">
             <div className="add__button">
-              <button type="button" id="event__creation">
+              <button
+                type="button"
+                id="event__creation"
+                onClick={ShowCreateModel}
+              >
                 Add Event
               </button>
             </div>
@@ -36,7 +47,13 @@ function Index() {
             </div>
           </div>
           <div className="data__table">
-            <EventTable events={events} user={user} getEvents={getEvents} />
+            <EventTable
+              events={events}
+              user={user}
+              getEvents={getEvents}
+              create={create}
+              ShowCreateModel={ShowCreateModel}
+            />
           </div>
         </div>
       </div>
