@@ -283,7 +283,8 @@ interface EventsProps {
     task_datetime: string
   }[],
   create: boolean,
-  ShowCreateModel: void
+  ShowCreateModel: void,
+  DeletingTask: Promise<void>,
 }
 
 // main function export
@@ -496,7 +497,7 @@ function EnhancedTable(props: EventsProps) {
                               <button
                                 className="event__delete btns"
                                 type="button"
-                              // onClick={() => DeletingTask(event.id)}
+                                onClick={() => props.DeletingTask(row.id)}
                               >
                                 Delete
                               </button>

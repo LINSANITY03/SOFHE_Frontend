@@ -29,7 +29,6 @@ function Calender() {
 
   // callback function to get events data
   const GetEventsData = useCallback(async () => {
-    console.log("this is callback");
     let response = await fetch(
       `http://127.0.0.1:8000/api/all-tasks/${user.user_id}`,
       {

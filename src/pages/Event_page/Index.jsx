@@ -7,6 +7,8 @@ import EventTable from "../../utils/EvenTable.tsx";
 import { AiOutlineSearch } from "react-icons/ai";
 import AuthContext from "../../services/AuthContext";
 
+import { toast } from "react-toastify";
+
 function Index() {
   const { events, user, getEvents } = useContext(AuthContext);
 
@@ -16,6 +18,28 @@ function Index() {
   const ShowCreateModel = useCallback(() => {
     setCreate(!create);
   }, [create]);
+
+  // send event and user Id to the server for deletion
+  let DeletingTask = async (eventId) => {
+    let response = await fetch(
+      `http://127.0.0.1:8000/api/delete-tasks/${eventId}/${user.user_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          // Authorization: "Bearer " + String(authTokens.access),
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    let data = await response.json();
+    if (response.status === 200) {
+      toast.success(data.message);
+      getEvents();
+    } else {
+      toast.error(data.message);
+    }
+  };
 
   return (
     <div className="body__content">
@@ -53,6 +77,7 @@ function Index() {
               getEvents={getEvents}
               create={create}
               ShowCreateModel={ShowCreateModel}
+              DeletingTask={DeletingTask}
             />
           </div>
         </div>
