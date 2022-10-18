@@ -8,7 +8,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import AuthContext from "../../services/AuthContext";
 
 function Index() {
-  const { events } = useContext(AuthContext);
+  const { events, user, getEvents } = useContext(AuthContext);
 
   return (
     <div className="body__content">
@@ -36,7 +36,7 @@ function Index() {
             </div>
           </div>
           <div className="data__table">
-            <EventTable events={events} />
+            <EventTable events={events} user={user} getEvents={getEvents} />
           </div>
         </div>
       </div>

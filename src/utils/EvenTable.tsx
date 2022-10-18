@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 import Moment from 'react-moment';
+import EditEvent from "../components/EditEvent";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -35,7 +36,8 @@ interface Data {
   description: string;
   credit: number;
   status: boolean;
-  updated: string;
+  task_datetime: string;
+  id: number;
 }
 
 function createData(
@@ -43,14 +45,16 @@ function createData(
   description: string,
   credit: number,
   status: boolean,
-  updated: string,
+  task_datetime: string,
+  id: number,
 ): Data {
   return {
     title,
     description,
     credit,
     status,
-    updated,
+    task_datetime,
+    id,
   };
 }
 
@@ -125,7 +129,7 @@ const headCells: readonly HeadCell[] = [
     label: 'Status',
   },
   {
-    id: 'updated',
+    id: 'task_datetime',
     numeric: true,
     disablePadding: false,
     label: 'Updated',
@@ -265,6 +269,17 @@ interface EventsProps {
     time_only: string
     status: boolean
     task_datetime: string
+  }[],
+  user: string | null,
+  getEvents: {
+    id: number
+    title: string
+    description: string
+    credit: number
+    date_only: string
+    time_only: string
+    status: boolean
+    task_datetime: string
   }[]
 }
 
@@ -272,17 +287,24 @@ interface EventsProps {
 function EnhancedTable(props: EventsProps) {
   const [order, setOrder] = useState<Order>('asc'); /* initialize with asc string with Order type */
   const [orderBy, setOrderBy] = useState<keyof Data>('title');
-  console.log(orderBy)
-  console.log(props.events)
+
   /* only dict key can be used with calories initialized */
   const [selected, setSelected] = useState<readonly string[]>([]);
   /* initialize with empty array of string which is immutable */
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [selectevent, setSelectEvent] = useState<Data | string | boolean>("");
+
+  // callback function to show/hide the +Create Model with the help of setstate
+  const ShowEditModel = useCallback(() => {
+    setSelectEvent(!selectevent);
+  }, [selectevent]);
+
+
   // get array of data from api and store in rows 
   const rows = props.events.map((event) => (
-    createData(event.title, event.description, event.credit, event.status, event.task_datetime)
+    createData(event.title, event.description, event.credit, event.status, event.task_datetime, event.id)
   ));
 
   const handleRequestSort = (
@@ -343,132 +365,170 @@ function EnhancedTable(props: EventsProps) {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        {/* sends to selected array length to enhancedTableToolbar */}
-        <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={'medium'}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+    <>
+      {selectevent ? <div className="overlay"></div> : <></>}
+      <div className={`${selectevent ? "show__model" : "hide__model"}`}>
+        {selectevent ? (
+          <EditEvent
+            ShowEditModel={ShowEditModel}
+            user={props.user}
+            selectevent={selectevent}
+            getEvents={props.getEvents}
+          />
+        ) : (
+          ""
+        )}
+      </div>
+
+      <Box sx={{ width: '100%' }}>
+        <Paper sx={{ width: '100%', mb: 2 }}>
+          <EnhancedTableToolbar numSelected={selected.length} />
+          {/* sends to selected array length to enhancedTableToolbar */}
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+              size={'medium'}
+            >
+              <EnhancedTableHead
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+              />
+              <TableBody>
+                {/* if you don't need to support IE11, you can replace the `stableSort` call with:
               rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.title);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                {stableSort(rows, getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    const isItemSelected = isSelected(row.title);
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.title)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.title}
-                      selected={isItemSelected}
-                      className='table__row'
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.title}
+                        selected={isItemSelected}
+                        className='table__row'
                       >
-                        <Typography
-                          fontFamily='Elina'
-                          fontSize={12}
-                          fontWeight={600}
-                        >{row.title}</Typography>
-                      </TableCell>
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            color="primary"
+                            checked={isItemSelected}
+                            inputProps={{
+                              'aria-labelledby': labelId,
+                            }}
+                            onClick={(event) => handleClick(event, row.title)}
+                          />
+                        </TableCell>
 
-                      <TableCell ><Typography
-                        fontFamily='Elina'
-                        fontSize={12}
-                        fontWeight={600}
-                      >{row.description}</Typography></TableCell>
-
-                      <TableCell ><Typography
-                        fontFamily='Elina'
-                        fontSize={12}
-                        fontWeight={600}
-                      >{row.credit.toLocaleString()}</Typography></TableCell>
-
-                      <TableCell >{row.status ?
-                        <FontAwesomeIcon
-                          icon={faCaretDown}
-                          id="downward__icon"
-                          size="2x"
-                        /> : <FontAwesomeIcon
-                          icon={faCaretUp}
-                          id="upward__icon"
-                          size="2x"
-                        />}</TableCell>
-                      <TableCell>
-                        <Typography
-                          fontFamily='Elina'
-                          fontSize={12}
-                          fontWeight={600}
+                        <TableCell
+                          component="th"
+                          id={labelId}
+                          scope="row"
+                          padding="none"
                         >
-                          <Moment format="YYYY-MM-DD HH:MM A">
-                            {row.updated}
-                          </Moment>
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: (53) * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          sx={{
-            ".MuiTablePagination-selectLabel, .MuiInputBase-root, .MuiTablePagination-displayedRows": {
-              fontFamily: 'Elina',
-              fontWeight: 600
-            }
-          }}
-        />
-      </Paper>
-    </Box >
+                          <Typography
+                            fontFamily='Elina'
+                            fontSize={12}
+                            fontWeight={600}
+                          >{row.title}</Typography>
+                        </TableCell>
+
+                        <TableCell ><Typography
+                          fontFamily='Elina'
+                          fontSize={12}
+                          fontWeight={600}
+                        >{row.description}</Typography></TableCell>
+
+                        <TableCell ><Typography
+                          fontFamily='Elina'
+                          fontSize={12}
+                          fontWeight={600}
+                        >{row.credit.toLocaleString()}</Typography></TableCell>
+
+                        <TableCell >{row.status ?
+                          <FontAwesomeIcon
+                            icon={faCaretDown}
+                            id="downward__icon"
+                            size="2x"
+                          /> : <FontAwesomeIcon
+                            icon={faCaretUp}
+                            id="upward__icon"
+                            size="2x"
+                          />}</TableCell>
+                        <TableCell>
+
+                          <Typography
+                            fontFamily='Elina'
+                            fontSize={12}
+                            fontWeight={600}
+                          >
+                            <Moment format="YYYY-MM-DD">{row.task_datetime}</Moment><Moment format="HH:mm A">{row.task_datetime}</Moment>
+                          </Typography>
+                        </TableCell>
+
+                        <TableCell>
+                          <div className="buttons__content">
+                            <div className="edit__btn">
+                              <button
+                                className="event__edit btns"
+                                type="button"
+                                onClick={() => setSelectEvent(row)}
+                              >
+                                Edit
+                              </button>
+                            </div>
+                            <div className="delete__btn">
+                              <button
+                                className="event__delete btns"
+                                type="button"
+                              // onClick={() => DeletingTask(event.id)}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: (53) * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            sx={{
+              ".MuiTablePagination-selectLabel, .MuiInputBase-root, .MuiTablePagination-displayedRows": {
+                fontFamily: 'Elina',
+                fontWeight: 600
+              }
+            }}
+          />
+        </Paper>
+      </Box >
+    </>
   );
 }
 
