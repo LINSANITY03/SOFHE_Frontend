@@ -4,6 +4,8 @@ import Moment from 'react-moment';
 import EditEvent from "../components/EditEvent";
 import AddEvent from "../components/AddEvent";
 
+import moment from "moment-timezone";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretDown,
@@ -480,7 +482,8 @@ function EnhancedTable(props: EventsProps) {
                             fontSize={12}
                             fontWeight={600}
                           >
-                            <Moment format="YYYY-MM-DD HH:mm A">{row.task_datetime}</Moment>
+                            <Moment format="YYYY-MM-DD hh:mm A">
+                              {row.task_datetime}</Moment>
                           </Typography>
                         </TableCell>
 

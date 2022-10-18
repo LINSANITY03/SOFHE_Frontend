@@ -189,7 +189,7 @@ function Calender() {
                   </div>
                   <div className="time">
                     <FontAwesomeIcon icon={faClock} size="2x" id="event_icon" />
-                    <Moment format="HH:mm A">{event.task_datetime}</Moment>
+                    <Moment format="hh:mm A">{event.task_datetime}</Moment>
                   </div>
                   <div className="status">
                     <div className="income">$ {event.credit}</div>
