@@ -9,12 +9,6 @@ function EditEvent(props) {
   let timedate = moment(props.selectevent.task_datetime).format(
     "YYYY-MM-DDTHH:mm"
   );
-  console.log("id", props.selectevent.id);
-  console.log("title", props.selectevent.title);
-  console.log("description", props.selectevent.description);
-  console.log("credit", props.selectevent.credit);
-  console.log("status", props.selectevent.status);
-  console.log("task_datetime", props.selectevent.task_datetime);
 
   let EditTask = async (e) => {
     e.preventDefault();

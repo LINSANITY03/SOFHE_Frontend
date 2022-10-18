@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect,
-  useContext,
-  createContext,
-} from "react";
+import React, { useCallback, useState, useEffect, useContext } from "react";
 import Sidebar from "./Sidebar_new";
 import "./Calender.scss";
 import Navbar from "./Navbar_new";
@@ -32,6 +26,49 @@ function Calender() {
   const [allevent, setAllEvents] = useState("");
   const [eventlist, setEvenList] = useState(true);
   const [selectevent, setSelectEvent] = useState("");
+
+  // callback function to get events data
+  const GetEventsData = useCallback(async () => {
+    console.log("this is callback");
+    let response = await fetch(
+      `http://127.0.0.1:8000/api/all-tasks/${user.user_id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + String(authTokens.access),
+        },
+      }
+    );
+    let data = await response.json();
+    if (response.status === 200) {
+      setEvents(data);
+    } else if (response.statusText === "Unauthorized") {
+      alert("Unauthorized");
+    }
+    return response;
+  }, [user.user_id]);
+
+  // fetch events of users and set it to the events state
+  // let getEvents = async () => {
+  //   let response = await fetch(
+  //     `http://127.0.0.1:8000/api/all-tasks/${user.user_id}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         // Authorization: "Bearer " + String(authTokens.access),
+  //       },
+  //     }
+  //   );
+  //   let data = await response.json();
+  //   if (response.status === 200) {
+  //     setEvents(data);
+  //   } else if (response.statusText === "Unauthorized") {
+  //     alert("Unauthorized");
+  //   }
+  //   return response;
+  // };
 
   // callback function to show/hide the +Create Model with the help of setstate
   const ShowCreateModel = useCallback(() => {
@@ -62,34 +99,11 @@ function Calender() {
 
   // call the fetch function only once the page reloads
   useEffect(() => {
-    getEvents();
-  }, []);
-
-  // fetch events of users and set it to the events state
-  let getEvents = async () => {
-    let response = await fetch(
-      `http://127.0.0.1:8000/api/all-tasks/${user.user_id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: "Bearer " + String(authTokens.access),
-        },
-      }
-    );
-    let data = await response.json();
-    if (response.status === 200) {
-      setEvents(data);
-    } else if (response.statusText === "Unauthorized") {
-      alert("Unauthorized");
-    }
-    return response;
-  };
+    GetEventsData();
+  }, [GetEventsData]);
 
   // send event and user Id to the server for deletion
   let DeletingTask = async (eventId) => {
-    console.log(eventId);
-    console.log(user.user_id);
     let response = await fetch(
       `http://127.0.0.1:8000/api/delete-tasks/${eventId}/${user.user_id}`,
       {
@@ -104,7 +118,7 @@ function Calender() {
     let data = await response.json();
     if (response.status === 200) {
       toast.success(data.message);
-      getEvents();
+      GetEventsData();
     } else {
       toast.error(data.message);
     }
@@ -116,7 +130,10 @@ function Calender() {
       {create || selectevent ? <div className="overlay"></div> : <></>}
       <div className={`${create ? "show__model" : "hide__model"}`}>
         {create ? (
-          <AddEvent ShowCreateModel={ShowCreateModel} getEvents={getEvents} />
+          <AddEvent
+            ShowCreateModel={ShowCreateModel}
+            getEvents={GetEventsData}
+          />
         ) : (
           ""
         )}
@@ -127,7 +144,7 @@ function Calender() {
             ShowEditModel={ShowEditModel}
             user={user}
             selectevent={selectevent}
-            getEvents={getEvents}
+            getEvents={GetEventsData}
           />
         ) : (
           ""
@@ -194,16 +211,16 @@ function Calender() {
                   <div className="status">
                     <div className="income">$ {event.credit}</div>
                     <div className="status__icon">
-                      {event.status == 0 ? (
+                      {event.status ? (
                         <FontAwesomeIcon
-                          icon={faCaretUp}
-                          id="upward__icon"
+                          icon={faCaretDown}
+                          id="downward__icon"
                           size="2x"
                         />
                       ) : (
                         <FontAwesomeIcon
-                          icon={faCaretDown}
-                          id="downward__icon"
+                          icon={faCaretUp}
+                          id="upward__icon"
                           size="2x"
                         />
                       )}

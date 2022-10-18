@@ -4,8 +4,6 @@ import Moment from 'react-moment';
 import EditEvent from "../components/EditEvent";
 import AddEvent from "../components/AddEvent";
 
-import moment from "moment-timezone";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretDown,
@@ -317,10 +315,6 @@ function EnhancedTable(props: EventsProps) {
     property: keyof Data,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
-    console.log('orderBy', orderBy)
-    console.log('property', property)
-    console.log('order', order)
-    console.log('isAsc', isAsc)
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
