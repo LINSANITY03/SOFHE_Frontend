@@ -284,7 +284,7 @@ interface EventsProps {
   }[],
   create: boolean,
   ShowCreateModel: void,
-  DeletingTask: Promise<void>,
+  DeletingTask(eventId: number): Promise<void>,
 }
 
 // main function export
