@@ -21,6 +21,8 @@ import Profile from "./pages/Profile_page/Profile.jsx";
 import Setting from "./pages/Setting_page/Settings.jsx";
 import Support from "./pages/Support_page/Support.jsx";
 import Index from "./pages/Event_page/Index";
+import Statement from "./pages/Statement_page/Index.jsx";
+
 function App() {
   return (
     <div className="App">
@@ -130,6 +132,9 @@ function App() {
 
             {/* Event page */}
             <Route exact path="/dashboard/event" element={<Index />} />
+
+            {/* Statement page */}
+            <Route exact path="/dashboard/statement" element={<Statement />} />
           </Routes>
         </Router>
       </AuthProvider>

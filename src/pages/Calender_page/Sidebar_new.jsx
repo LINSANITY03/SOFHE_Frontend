@@ -41,10 +41,12 @@ function Index() {
         <div className="manage__content">
           <ul>
             <p className="title">Manage</p>
-            <li>
-              <FontAwesomeIcon icon={faCalendar} className="icon" />
-              <span id="sb_link">Calender</span>
-            </li>
+            <Link to="/dashboard/calender">
+              <li>
+                <FontAwesomeIcon icon={faCalendar} className="icon" />
+                <span id="sb_link">Calender</span>
+              </li>
+            </Link>
             <Link to="/dashboard/event">
               <li>
                 <FontAwesomeIcon icon={faListCheck} className="icon" />
@@ -65,11 +67,13 @@ function Index() {
         <div className="finance__content">
           <ul>
             <p className="title">Finance</p>
-            <li>
-              {" "}
-              <FontAwesomeIcon icon={faCoins} className="icon" />
-              <span id="sb_link">Statement</span>
-            </li>
+            <Link to="/dashboard/statement">
+              <li>
+                {" "}
+                <FontAwesomeIcon icon={faCoins} className="icon" />
+                <span id="sb_link">Statement</span>
+              </li>
+            </Link>
             <li>
               <FontAwesomeIcon icon={faMicrochip} className="icon" />
               <span id="sb_link">Prediction</span>

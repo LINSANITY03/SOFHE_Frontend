@@ -1,4 +1,9 @@
 .navbar_content{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
 
     .wrapper__content{
         display: flex;
