@@ -46,12 +46,26 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  let logoutUser = () => {
-    setAuthTokens(null);
-    setUser(null);
-    localStorage.removeItem("authTokens");
-
-    <Navigate to="/" />;
+  let logoutUser = async () => {
+    let response = await fetch("http://127.0.0.1:8000/auth/logoutUser/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: authTokens?.refresh,
+      }),
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      setAuthTokens(null);
+      setUser(null);
+      localStorage.removeItem("authTokens");
+      toast.success(data.message);
+      <Navigate to="/login" />;
+    } else {
+      toast.error(data.message);
+    }
   };
 
   let updateToken = async () => {

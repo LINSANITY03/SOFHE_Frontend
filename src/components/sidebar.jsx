@@ -80,7 +80,7 @@ function Sidebar(props) {
       </div>
       <div className={styles.signout__content}>
         {props.sidebar ? (
-          <p>
+          <p onClick={logoutUser}>
             Sign out <FontAwesomeIcon icon={faArrowRightToBracket} />
           </p>
         ) : (
