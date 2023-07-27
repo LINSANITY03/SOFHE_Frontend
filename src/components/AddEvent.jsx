@@ -19,11 +19,11 @@ function AddEvent(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          _title: e.target.title.value,
-          _description: e.target.description.value,
-          _income: e.target.income.value,
-          _status: e.target.status.value,
-          _datetime: e.target.datetime.value,
+          title: e.target.title.value,
+          description: e.target.description.value,
+          credit: e.target.income.value,
+          status: e.target.status.value,
+          task_datetime: e.target.datetime.value,
         }),
       }
     );
