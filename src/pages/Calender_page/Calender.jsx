@@ -29,16 +29,13 @@ function Calender() {
 
   // callback function to get events data
   const GetEventsData = useCallback(async () => {
-    let response = await fetch(
-      `http://127.0.0.1:8000/api/all-tasks/${user.user_id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: "Bearer " + String(authTokens.access),
-        },
-      }
-    );
+    let response = await fetch(`http://127.0.0.1:8000/api/${user.user_id}/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: "Bearer " + String(authTokens.access),
+      },
+    });
     let data = await response.json();
     if (response.status === 200) {
       setEvents(data);
@@ -104,7 +101,7 @@ function Calender() {
   // send event and user Id to the server for deletion
   let DeletingTask = async (eventId) => {
     let response = await fetch(
-      `http://127.0.0.1:8000/api/delete-tasks/${eventId}/${user.user_id}`,
+      `http://127.0.0.1:8000/api/${user.user_id}/?taskId=${eventId}`,
       {
         method: "DELETE",
         headers: {

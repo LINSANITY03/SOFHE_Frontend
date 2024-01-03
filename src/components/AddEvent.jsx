@@ -11,7 +11,7 @@ function AddEvent(props) {
   let AddingTasks = async (e) => {
     e.preventDefault();
     let response = await fetch(
-      `http://127.0.0.1:8000/api/add-tasks/${user.user_id}`,
+      `http://127.0.0.1:8000/api/${user.user_id}/addUserTask/`,
       {
         method: "POST",
         headers: {
